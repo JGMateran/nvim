@@ -1,3 +1,5 @@
+vim.keymap.set({'n', 'v'}, '<Space>', '<Nop>', { silent = true })
+
 vim.keymap.set('', '<C-h>', '<C-w>h')
 vim.keymap.set('', '<C-k>', '<C-w>k')
 vim.keymap.set('', '<C-j>', '<C-w>j')
