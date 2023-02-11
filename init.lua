@@ -198,3 +198,5 @@ require('nvim-tree').setup({
     ignore = false
   }
 })
+
+vim.keymap.set('n', '<leader><Tab>', ':NvimTreeToggle<cr>', {})
