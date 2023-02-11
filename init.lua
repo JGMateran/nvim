@@ -95,32 +95,6 @@ end)
 
 require('neoscroll').setup()
 
-require('nvim-treesitter.configs').setup({
-  ensure_installed = {
-    'cpp',
-    'go',
-    'lua',
-    'typescript',
-    'vim',
-    'tsx',
-    'javascript',
-    'html',
-    'css'
-  },
-  highlight = {
-    enable = true
-  },
-  indent = {
-    enable = true,
-    disable = {
-      'python'
-    }
-  },
-  autotag = {
-    enable = true
-  }
-})
-
 require('gitsigns').setup()
 
 require('nvim-tree').setup({
