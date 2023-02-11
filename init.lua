@@ -95,8 +95,6 @@ end)
 
 require('neoscroll').setup()
 
-require('gitsigns').setup()
-
 require('nvim-tree').setup({
   git = {
     ignore = false
