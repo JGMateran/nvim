@@ -42,6 +42,13 @@ require('packer').startup(function(use)
   }
   use 'lewis6991/gitsigns.nvim'
   use 'nvim-lualine/lualine.nvim'
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons'
+    },
+    tag = 'nightly'
+  }
 end)
 
 require('telescope').setup({
@@ -89,6 +96,8 @@ vim.wo.signcolumn = 'yes'
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.wo.wrap = false
+
+vim.opt.termguicolors = true
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
@@ -183,3 +192,9 @@ cmp.setup({
 
 require('gitsigns').setup()
 require('lualine').setup()
+
+require('nvim-tree').setup({
+  git = {
+    ignore = false
+  }
+})
