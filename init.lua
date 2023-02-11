@@ -1,23 +1,23 @@
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
-	vim.cmd [[packadd packer.nvim]]
+  vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
+  vim.cmd [[packadd packer.nvim]]
 end
 
 require('packer').startup(function(use)
-	use 'folke/tokyonight.nvim'
-	use {
-		'nvim-telescope/telescope.nvim', 
-		branch = '0.1.x', 
-		requires = { 
-			'nvim-lua/plenary.nvim'
-		} 
-	}
-  use { 
-    'nvim-telescope/telescope-fzf-native.nvim', 
+  use 'folke/tokyonight.nvim'
+  use {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    }
+  }
+  use {
+    'nvim-telescope/telescope-fzf-native.nvim',
     run = 'make',
-    cond = vim.fn.executable 'make' == 1 
+    cond = vim.fn.executable 'make' == 1
   }
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -63,15 +63,15 @@ require('packer').startup(function(use)
       require('Comment').setup()
     end
   }
-  use { 
-    'TimUntersberger/neogit', 
+  use {
+    'TimUntersberger/neogit',
     requires = {
       'nvim-lua/plenary.nvim'
-    } 
+    }
   }
-  use { 
-    'sindrets/diffview.nvim', 
-    requires = 'nvim-lua/plenary.nvim' 
+  use {
+    'sindrets/diffview.nvim',
+    requires = 'nvim-lua/plenary.nvim'
   }
 end)
 
@@ -84,7 +84,7 @@ require('telescope').setup({
       }
     }
   }
-}) 
+})
 
 pcall(require('telescope').load_extension, 'fzf')
 
@@ -166,10 +166,10 @@ local on_attach = function (client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   local bufopts = {
-    noremap = true, 
-    silent = true, 
+    noremap = true,
+    silent = true,
     buffer = bufnr
-  } 
+  }
 
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
 end
