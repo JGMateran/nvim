@@ -75,6 +75,13 @@ require('packer').startup(function(use)
   }
   use 'lukas-reineke/indent-blankline.nvim'
   use 'karb94/neoscroll.nvim'
+  use {
+    'kylechui/nvim-surround',
+    tag = '*',
+    config = function()
+      require('nvim-surround').setup()
+    end
+  }
 end)
 
 require('neoscroll').setup()
