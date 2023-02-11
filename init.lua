@@ -41,6 +41,7 @@ require('packer').startup(function(use)
     }
   }
   use 'lewis6991/gitsigns.nvim'
+  use 'nvim-lualine/lualine.nvim'
 end)
 
 require('telescope').setup({
@@ -120,7 +121,8 @@ local mason_lspconfig = require('mason-lspconfig')
 mason_lspconfig.setup({
   ensure_installed = {
     'sumneko_lua',
-    'tsserver'
+    'tsserver',
+    'gopls'
   }
 })
 
@@ -180,3 +182,4 @@ cmp.setup({
 })
 
 require('gitsigns').setup()
+require('lualine').setup()
