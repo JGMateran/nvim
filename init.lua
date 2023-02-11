@@ -61,7 +61,11 @@ require('nvim-treesitter.configs').setup({
     'go',
     'lua',
     'typescript',
-    'vim'
+    'vim',
+    'tsx',
+    'javascript',
+    'html',
+    'css'
   },
   highlight = {
     enable = true
