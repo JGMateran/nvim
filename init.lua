@@ -150,8 +150,6 @@ vim.keymap.set({'n', 'v'}, '<Space>', '<Nop>', { silent = true })
 
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, {})
 
-vim.cmd[[colorscheme tokyonight]]
-
 require('mason').setup()
 local mason_lspconfig = require('mason-lspconfig')
 
@@ -219,7 +217,6 @@ cmp.setup({
 })
 
 require('gitsigns').setup()
-require('lualine').setup()
 
 require('nvim-tree').setup({
   git = {
@@ -232,4 +229,4 @@ require('indent_blankline').setup {
   show_trailing_blankline_indent = false,
 }
 
-vim.keymap.set('n', '<leader><Tab>', ':NvimTreeToggle<cr>', {})
+require('greg')
