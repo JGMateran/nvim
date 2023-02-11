@@ -86,6 +86,8 @@ require('packer').startup(function(use)
     end
   }
 
+  use 'folke/neodev.nvim'
+
   if is_bootstrap then
     require('packer').sync()
   end
@@ -166,6 +168,8 @@ vim.opt.completeopt= "menu,menuone,noselect"
 vim.keymap.set({'n', 'v'}, '<Space>', '<Nop>', { silent = true })
 
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, {})
+
+require('neodev').setup()
 
 require('mason').setup()
 local mason_lspconfig = require('mason-lspconfig')
