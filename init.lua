@@ -95,19 +95,6 @@ end)
 
 require('neoscroll').setup()
 
-require('telescope').setup({
-  defaults = {
-    mappings = {
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      }
-    }
-  }
-})
-
-pcall(require('telescope').load_extension, 'fzf')
-
 require('nvim-treesitter.configs').setup({
   ensure_installed = {
     'cpp',
