@@ -74,7 +74,10 @@ require('packer').startup(function(use)
     requires = 'nvim-lua/plenary.nvim'
   }
   use 'lukas-reineke/indent-blankline.nvim'
+  use 'karb94/neoscroll.nvim'
 end)
+
+require('neoscroll').setup()
 
 require('telescope').setup({
   defaults = {
