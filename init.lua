@@ -25,6 +25,9 @@ require('packer').startup(function(use)
       pcall(require('nvim-treesitter.install').update({ with_sync = true }))
     end
   }
+  use 'neovim/nvim-lspconfig'
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
 end)
 
 require('telescope').setup({
@@ -92,3 +95,38 @@ vim.keymap.set({'n', 'v'}, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, {})
 
 vim.cmd[[colorscheme tokyonight]]
+
+require('mason').setup()
+local mason_lspconfig = require('mason-lspconfig')
+
+mason_lspconfig.setup({
+  ensure_installed = {
+    'sumneko_lua',
+    'tsserver'
+  }
+})
+
+local on_attach = function (client, bufnr)
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  local bufopts = {
+    noremap = true, 
+    silent = true, 
+    buffer = bufnr
+  } 
+
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+end
+
+local lsp_flags = {
+  debounce_text_change = 150
+}
+
+mason_lspconfig.setup_handlers {
+  function (server_name)
+    require('lspconfig')[server_name].setup({
+      on_attach = on_attach,
+      flags = lsp_flags
+    })
+  end
+}
