@@ -40,6 +40,7 @@ require('packer').startup(function(use)
       'saadparwaiz1/cmp_luasnip'
     }
   }
+  use 'lewis6991/gitsigns.nvim'
 end)
 
 require('telescope').setup({
@@ -177,3 +178,5 @@ cmp.setup({
     { name = 'buffer' },
   })
 })
+
+require('gitsigns').setup()
