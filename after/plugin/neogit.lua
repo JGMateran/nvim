@@ -6,5 +6,10 @@ neogit.setup({
   }
 })
 
-vim.keymap.set('n', '<leader>gg', ':Neogit<cr>', { noremap = true })
-vim.keymap.set('n', '<leader>gc', ':Neogit commit<cr>', { noremap = true })
+vim.keymap.set('n', '<leader>gg', function ()
+  neogit.open()
+end, { noremap = true })
+
+vim.keymap.set('n', '<leader>gc', function ()
+  neogit.open({ 'commit' })
+end, { noremap = true })
