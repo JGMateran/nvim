@@ -25,9 +25,21 @@ require('packer').startup(function(use)
       pcall(require('nvim-treesitter.install').update({ with_sync = true }))
     end
   }
-  use 'neovim/nvim-lspconfig'
-  use 'williamboman/mason.nvim'
-  use 'williamboman/mason-lspconfig.nvim'
+  use {
+    'neovim/nvim-lspconfig',
+    requires = {
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim'
+    }
+  }
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'hrsh7th/cmp-nvim-lsp',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip'
+    }
+  }
 end)
 
 require('telescope').setup({
@@ -89,6 +101,7 @@ vim.o.clipboard = 'unnamedplus'
 vim.opt.cursorline = true
 
 vim.o.scrolloff = 8
+vim.opt.completeopt= "menu,menuone,noselect"
 
 vim.keymap.set({'n', 'v'}, '<Space>', '<Nop>', { silent = true })
 
@@ -122,11 +135,41 @@ local lsp_flags = {
   debounce_text_change = 150
 }
 
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 mason_lspconfig.setup_handlers {
   function (server_name)
     require('lspconfig')[server_name].setup({
       on_attach = on_attach,
-      flags = lsp_flags
+      flags = lsp_flags,
+      capabilities = capabilities
     })
   end
 }
+
+local cmp = require('cmp')
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
+  window = {
+    -- completion = cmp.config.window.bordered(),
+    -- documentation = cmp.config.window.bordered(),
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' }
+  }, {
+    { name = 'buffer' },
+  })
+})
