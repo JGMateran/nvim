@@ -56,6 +56,7 @@ require('packer').startup(function(use)
     end
   }
   use 'windwp/nvim-ts-autotag'
+  use 'mg979/vim-visual-multi'
 end)
 
 require('telescope').setup({
