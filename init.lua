@@ -73,6 +73,7 @@ require('packer').startup(function(use)
     'sindrets/diffview.nvim',
     requires = 'nvim-lua/plenary.nvim'
   }
+  use 'lukas-reineke/indent-blankline.nvim'
 end)
 
 require('telescope').setup({
@@ -225,5 +226,10 @@ require('nvim-tree').setup({
     ignore = false
   }
 })
+
+require('indent_blankline').setup {
+  char = '┊',
+  show_trailing_blankline_indent = false,
+}
 
 vim.keymap.set('n', '<leader><Tab>', ':NvimTreeToggle<cr>', {})
