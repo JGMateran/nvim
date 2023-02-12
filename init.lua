@@ -94,6 +94,7 @@ require('packer').startup(function(use)
   }
 
   use 'folke/neodev.nvim'
+  use 'seandewar/bad-apple.nvim'
 
   if is_bootstrap then
     require('packer').sync()
