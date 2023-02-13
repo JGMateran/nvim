@@ -17,6 +17,8 @@ local on_attach = function()
   map('n', '<leader>hp', gs.preview_hunk)
   map('n', '<leader>tb', gs.toggle_current_line_blame)
   map('n', '<leader>hd', gs.diffthis)
+
+  map({'n', 'v'}, '<leader>hs', ':Gitsigns stage_hunk<CR>')
 end
 
 gitsigns.setup({
