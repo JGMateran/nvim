@@ -93,4 +93,19 @@ require('packer').startup(function(use)
   end
 end)
 
+local sign_icons = {
+  DiagnosticSignError = '',
+  DiagnosticSignWarn = '',
+  DiagnosticSignHint = '',
+  DiagnosticSignInfo = ''
+}
+
+for name, text in pairs(sign_icons) do
+  vim.fn.sign_define(name, {
+    texthl = name,
+    text = text,
+    numhl = ''
+  })
+end
+
 require('greg')
