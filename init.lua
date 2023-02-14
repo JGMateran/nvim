@@ -87,6 +87,7 @@ require('packer').startup(function(use)
   }
 
   use 'folke/neodev.nvim'
+  use 'jose-elias-alvarez/null-ls.nvim'
   use 'onsails/lspkind.nvim'
 
   if is_bootstrap then

@@ -8,7 +8,8 @@ mason_lspconfig.setup({
   ensure_installed = {
     'lua_ls',
     'tsserver',
-    'gopls'
+    'gopls',
+    'eslint'
   }
 })
 
@@ -81,3 +82,10 @@ cmp.setup({
   })
 })
 
+local null_ls = require('null-ls')
+
+null_ls.setup({
+  sources = {
+    null_ls.builtins.formatting.eslint
+  }
+})
