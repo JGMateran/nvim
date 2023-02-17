@@ -1,13 +1,13 @@
-vim.keymap.set('n', '<leader><Tab>', ':NvimTreeToggle<cr>', {})
+vim.keymap.set("n", "<leader><Tab>", ":NvimTreeToggle<cr>", {})
 
-require('lualine').setup({
-  options = {
-    theme = 'tokyonight'
-  }
+require("lualine").setup({
+	options = {
+		theme = "tokyonight",
+	},
 })
 
-require('tokyonight').setup({
-  style = 'night'
+require("tokyonight").setup({
+	style = "night",
 })
 
-vim.cmd[[colorscheme tokyonight]]
+vim.cmd([[colorscheme tokyonight]])
