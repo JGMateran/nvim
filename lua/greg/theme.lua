@@ -1,11 +1,11 @@
 require("lualine").setup({
-	options = {
-		theme = "tokyonight",
-	},
+  options = {
+    theme = "tokyonight",
+  },
 })
 
 require("tokyonight").setup({
-	style = "night",
+  style = "night",
 })
 
 vim.cmd([[colorscheme tokyonight]])

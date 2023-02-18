@@ -1,15 +1,15 @@
 local neogit = require("neogit")
 
 neogit.setup({
-	integrations = {
-		diffview = true,
-	},
+  integrations = {
+    diffview = true,
+  },
 })
 
 vim.keymap.set("n", "<leader>gg", function()
-	neogit.open()
+  neogit.open()
 end, { noremap = true })
 
 vim.keymap.set("n", "<leader>gc", function()
-	neogit.open({ "commit" })
+  neogit.open({ "commit" })
 end, { noremap = true })

@@ -2,18 +2,18 @@ local telescope = require("telescope")
 local builtin = require("telescope.builtin")
 
 telescope.setup({
-	defaults = {
-		mappings = {
-			i = {
-				["<C-u>"] = false,
-				["<C-d>"] = false,
-			},
-		},
-		file_ignore_patterns = {
-			"node_modules",
-		},
-		preview = false,
-	},
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-u>"] = false,
+        ["<C-d>"] = false,
+      },
+    },
+    file_ignore_patterns = {
+      "node_modules",
+    },
+    preview = false,
+  },
 })
 
 pcall(require("telescope").load_extension, "fzf")
