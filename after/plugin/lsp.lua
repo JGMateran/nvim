@@ -96,7 +96,6 @@ end
 
 null_ls.setup({
   sources = {
-    null_ls.builtins.formatting.eslint_d,
     null_ls.builtins.formatting.stylua.with({
       extra_args = {
         "--indent-type",
