@@ -89,6 +89,15 @@ require("packer").startup(function(use)
   use("folke/neodev.nvim")
   use("jose-elias-alvarez/null-ls.nvim")
   use("onsails/lspkind.nvim")
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  })
+
+  use("folke/neodev.nvim")
+  use("seandewar/bad-apple.nvim")
 
   if is_bootstrap then
     require("packer").sync()
