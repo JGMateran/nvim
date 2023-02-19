@@ -10,6 +10,8 @@ mason_lspconfig.setup({
     "tsserver",
     "gopls",
     "eslint",
+    "emmet_ls",
+    "cssls",
   },
 })
 
