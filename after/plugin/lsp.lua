@@ -12,6 +12,7 @@ mason_lspconfig.setup({
     "eslint",
     "emmet_ls",
     "cssls",
+    "tailwindcss",
   },
 })
 
