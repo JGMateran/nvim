@@ -98,36 +98,15 @@ return {
     end,
   },
   {
-    "NeogitOrg/neogit",
+    "tpope/vim-fugitive",
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "sindrets/diffview.nvim",
+      "tpope/vim-rhubarb",
     },
-    opts = {
-      integrations = {
-        diffview = true,
-      },
+    keys = {
+      { "<leader>gg", "<cmd>G<cr>" },
+      { "<leader>gc", "<cmd>G commit<cr>" },
+      { "<leader>gu", "<cmd>G push<cr>" },
+      { "<leader>gp", "<cmd>G pull<cr>" },
     },
-    config = function(_, opts)
-      local neogit = require("neogit")
-
-      neogit.setup(opts)
-
-      vim.keymap.set("n", "<leader>gg", function()
-        neogit.open()
-      end, { noremap = true })
-
-      vim.keymap.set("n", "<leader>gp", function()
-        neogit.open({ "pull" })
-      end, { noremap = true })
-
-      vim.keymap.set("n", "<leader>gu", function()
-        neogit.open({ "push" })
-      end, { noremap = true })
-
-      vim.keymap.set("n", "<leader>gc", function()
-        neogit.open({ "commit" })
-      end, { noremap = true })
-    end,
   },
 }
