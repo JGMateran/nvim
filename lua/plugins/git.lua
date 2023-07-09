@@ -109,4 +109,7 @@ return {
       { "<leader>gp", "<cmd>G pull<cr>" },
     },
   },
+  {
+    "sindrets/diffview.nvim"
+  }
 }
