@@ -1,5 +1,10 @@
 return {
   {
+    "mbbill/undotree",
+    keys = {
+      { "<leader>u", vim.cmd.UndotreeToggle },
+    },
+  },
     "kylechui/nvim-surround",
     version = "*",
     event = "VeryLazy",
