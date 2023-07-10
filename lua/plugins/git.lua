@@ -107,9 +107,15 @@ return {
       { "<leader>gc", "<cmd>G commit<cr>" },
       { "<leader>gu", "<cmd>G push<cr>" },
       { "<leader>gp", "<cmd>G pull<cr>" },
+      { "<leader>gd", "<cmd>Gvdiffsplit<cr>" },
+      { "<leader>gb", "<cmd>G blame<cr>" },
     },
   },
   {
-    "sindrets/diffview.nvim"
-  }
+    "sindrets/diffview.nvim",
+    keys = {
+      { "<leader>dh", "<cmd>DiffviewFileHistory<cr>" },
+      { "<leader>dc", "<cmd>DiffviewClose<cr>" },
+    },
+  },
 }
