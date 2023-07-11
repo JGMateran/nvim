@@ -8,7 +8,10 @@ vim.keymap.set("v", "<leader>d", '"_d')
 vim.keymap.set("n", "x", '"_x')
 vim.keymap.set("v", "p", '"_dP')
 
-vim.keymap.set("n", "Y", "yg$")
+vim.keymap.set("n", "<Up>", "<Nop>")
+vim.keymap.set("n", "<Down>", "<Nop>")
+vim.keymap.set("n", "<Right>", ":bnext<cr>")
+vim.keymap.set("n", "<Left>", ":bprevious<cr>")
 
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
