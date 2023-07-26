@@ -19,6 +19,7 @@ return {
         "prismals",
         "tailwindcss",
         "tsserver",
+        "pyright",
       },
     },
   },
