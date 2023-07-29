@@ -36,7 +36,7 @@ return {
       "typescript",
       "vim",
       "python",
-      "go",
+      -- "go",
     },
   },
   config = function(_, opts)
