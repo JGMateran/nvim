@@ -58,7 +58,7 @@ return {
           flags = lsp_flags,
           capabilities = capabilities,
           settings = settings,
-          filetype = (settings or {}).filetype,
+          filetypes = (settings or {}).filetypes,
         })
       end
     end,
