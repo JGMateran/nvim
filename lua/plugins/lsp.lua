@@ -15,7 +15,9 @@ local servers = {
   pyright = {},
   tailwindcss = {},
   tsserver = {},
-  -- rust_analyzer = {},
+  rust_analyzer = {
+    cmd = { "rustup", "run", "stable", "rust-analyzer" },
+  },
 }
 
 return {

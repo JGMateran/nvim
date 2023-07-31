@@ -37,7 +37,7 @@ return {
       "vim",
       "python",
       -- "go",
-      -- "rust",
+      "rust",
     },
   },
   config = function(_, opts)
