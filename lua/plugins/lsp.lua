@@ -1,5 +1,5 @@
 local servers = {
-  astro = {},
+  -- astro = {},
   bashls = {},
   cssls = {},
   emmet_ls = {},

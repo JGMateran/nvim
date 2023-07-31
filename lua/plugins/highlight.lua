@@ -22,7 +22,7 @@ return {
       enable = true,
     },
     ensure_installed = {
-      "astro",
+      -- "astro",
       "bash",
       "css",
       "html",
@@ -37,6 +37,7 @@ return {
       "vim",
       "python",
       -- "go",
+      -- "rust",
     },
   },
   config = function(_, opts)
