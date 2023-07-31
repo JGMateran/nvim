@@ -9,7 +9,7 @@ local servers = {
   pyright = {},
   tailwindcss = {},
   tsserver = {},
-  rust_analyzer = {},
+  -- rust_analyzer = {},
 }
 
 return {
