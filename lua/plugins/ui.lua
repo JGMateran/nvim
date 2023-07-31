@@ -48,15 +48,6 @@ return {
       { "<leader><tab>", "<cmd>Neotree toggle<cr>" },
     },
   },
-
-  {
-    "nvim-lualine/lualine.nvim",
-    opts = {
-      options = {
-        theme = "tokyonight",
-      },
-    },
-  },
   {
     "lukas-reineke/indent-blankline.nvim",
     opts = {
