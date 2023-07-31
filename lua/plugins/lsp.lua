@@ -1,3 +1,17 @@
+local servers = {
+  astro = {},
+  bashls = {},
+  cssls = {},
+  emmet_ls = {},
+  html = {},
+  lua_ls = {},
+  prismals = {},
+  pyright = {},
+  tailwindcss = {},
+  tsserver = {},
+  rust_analyzer = {},
+}
+
 return {
   {
     "williamboman/mason-lspconfig.nvim",
@@ -9,19 +23,7 @@ return {
       },
     },
     opts = {
-      ensure_installed = {
-        "astro",
-        "bashls",
-        "cssls",
-        "emmet_ls",
-        "html",
-        "lua_ls",
-        "prismals",
-        "tailwindcss",
-        "tsserver",
-        "pyright",
-        -- "gopls",
-      },
+      ensure_installed = vim.tbl_keys(servers),
     },
   },
   {
@@ -34,7 +36,6 @@ return {
       require("neodev").setup()
 
       local lspconfig = require("lspconfig")
-      local mason_lspconfig = require("mason-lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
@@ -46,14 +47,14 @@ return {
         debounce_text_change = 150,
       }
 
-      mason_lspconfig.setup_handlers({
-        function(server_name)
-          lspconfig[server_name].setup({
-            flags = lsp_flags,
-            capabilities = capabilities,
-          })
-        end,
-      })
+      for server_name, settings in pairs(servers) do
+        lspconfig[server_name].setup({
+          flags = lsp_flags,
+          capabilities = capabilities,
+          settings = settings,
+          filetype = (settings or {}).filetype,
+        })
+      end
     end,
   },
   {
