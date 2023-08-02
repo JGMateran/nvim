@@ -1,3 +1,52 @@
+local lsp_kind = {
+  Array = "",
+  Boolean = "",
+  Class = "",
+  Color = "",
+  Constant = "",
+  Constructor = "",
+  Copilot = "",
+  Enum = "",
+  EnumMember = "",
+  Event = "",
+  Field = "",
+  File = "",
+  Folder = "",
+  Function = "",
+  Interface = "",
+  Key = "",
+  Keyword = "",
+  Method = "",
+  Module = "",
+  Namespace = "",
+  Null = "",
+  Number = "",
+  Object = "",
+  Operator = "",
+  Package = "",
+  Property = "",
+  Reference = "",
+  Snippet = "",
+  -- Snippet = "",
+  String = "",
+  Struct = "",
+  Text = "",
+  TypeParameter = "",
+  Unit = "",
+  Value = "",
+  Variable = "",
+}
+
+local function cmp_format()
+  return function(_, item)
+    if lsp_kind[item.kind] then
+      item.kind = lsp_kind[item.kind]
+    end
+
+    return item
+  end
+end
+
 local servers = {
   -- astro = {},
   bashls = {},
@@ -72,25 +121,16 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
-      "onsails/lspkind.nvim",
     },
     config = function()
       local cmp = require("cmp")
-      local lspkind = require("lspkind")
       local luasnip = require("luasnip")
 
       luasnip.config.setup({})
 
       cmp.setup({
         formatting = {
-          format = lspkind.cmp_format({
-            mode = "symbol",
-            maxwidth = 50,
-            ellipsis_char = "...",
-            before = function(_, vim_item)
-              return vim_item
-            end,
-          }),
+          format = cmp_format(),
         },
         snippet = {
           expand = function(args)
