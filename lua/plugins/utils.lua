@@ -5,7 +5,6 @@ return {
       { "<leader>u", vim.cmd.UndotreeToggle },
     },
   },
-
   {
     "folke/trouble.nvim",
     keys = {
