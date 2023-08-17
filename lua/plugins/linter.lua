@@ -1,9 +1,7 @@
-local use_deprecated_linter = require("greg.config").use_deprecated_linter
-
 return {
   {
     "jose-elias-alvarez/null-ls.nvim",
-    enabled = use_deprecated_linter,
+    enabled = true,
     config = function()
       local null_ls = require("null-ls")
       local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -50,7 +48,7 @@ return {
   },
   {
     "mfussenegger/nvim-lint",
-    enabled = not use_deprecated_linter,
+    enabled = false,
     config = function()
       local augroup = vim.api.nvim_create_augroup("LspLinting", { clear = true })
 
@@ -61,8 +59,16 @@ return {
         typescriptreact = { "eslint_d" },
       }
 
-      vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
+      -- vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
+      vim.api.nvim_create_autocmd({
+        "InsertLeave",
+        "TextChangedI",
+        "TextChangedP",
+        "BufEnter",
+        "BufWritePost",
+      }, {
         group = augroup,
+        pattern = { "*.js", "*.ts", "*.jsx", "*.tsx" },
         callback = function()
           require("lint").try_lint()
         end,
@@ -71,7 +77,7 @@ return {
   },
   {
     "mhartington/formatter.nvim",
-    enabled = not use_deprecated_linter,
+    enabled = false,
     config = function()
       local augroup = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
 
@@ -98,6 +104,7 @@ return {
       })
 
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+        pattern = { "*.js", "*.ts", "*.jsx", "*.tsx", "*.lua" },
         group = augroup,
         command = "FormatWrite",
       })
