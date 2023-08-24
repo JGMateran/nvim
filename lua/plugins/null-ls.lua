@@ -1,7 +1,6 @@
 return {
   {
     "jose-elias-alvarez/null-ls.nvim",
-    enabled = true,
     config = function()
       local null_ls = require("null-ls")
       local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -43,70 +42,6 @@ return {
             })
           end
         end,
-      })
-    end,
-  },
-  {
-    "mfussenegger/nvim-lint",
-    enabled = false,
-    config = function()
-      local augroup = vim.api.nvim_create_augroup("LspLinting", { clear = true })
-
-      require("lint").linters_by_ft = {
-        javascript = { "eslint" },
-        typescript = { "eslint_d" },
-        javascriptreact = { "eslint_d" },
-        typescriptreact = { "eslint_d" },
-      }
-
-      -- vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
-      vim.api.nvim_create_autocmd({
-        "InsertLeave",
-        "TextChangedI",
-        "TextChangedP",
-        "BufEnter",
-        "BufWritePost",
-      }, {
-        group = augroup,
-        pattern = { "*.js", "*.ts", "*.jsx", "*.tsx" },
-        callback = function()
-          require("lint").try_lint()
-        end,
-      })
-    end,
-  },
-  {
-    "mhartington/formatter.nvim",
-    enabled = false,
-    config = function()
-      local augroup = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
-
-      require("formatter").setup({
-        logging = true,
-        log_level = vim.log.levels.WARN,
-        filetype = {
-          javascript = {
-            require("formatter.filetypes.javascript").eslint_d,
-          },
-          typescript = {
-            require("formatter.filetypes.typescript").eslint_d,
-          },
-          javascriptreact = {
-            require("formatter.filetypes.javascriptreact").eslint_d,
-          },
-          typescriptreact = {
-            require("formatter.filetypes.typescriptreact").eslint_d,
-          },
-          lua = {
-            require("formatter.filetypes.lua").stylua,
-          },
-        },
-      })
-
-      vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-        pattern = { "*.js", "*.ts", "*.jsx", "*.tsx", "*.lua" },
-        group = augroup,
-        command = "FormatWrite",
       })
     end,
   },
