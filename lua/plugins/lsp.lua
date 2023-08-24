@@ -105,11 +105,15 @@ return {
       }
 
       for server_name, settings in pairs(servers) do
+        if not settings then
+          settings = {}
+        end
+
         lspconfig[server_name].setup({
           flags = lsp_flags,
           capabilities = capabilities,
           settings = settings,
-          filetypes = (settings or {}).filetypes,
+          filetypes = settings.filetypes,
         })
       end
     end,
