@@ -22,7 +22,7 @@ return {
       enable = true,
     },
     ensure_installed = {
-      -- "astro",
+      "astro",
       "bash",
       "css",
       "html",

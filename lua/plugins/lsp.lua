@@ -48,7 +48,7 @@ local function cmp_format()
 end
 
 local servers = {
-  -- astro = {},
+  astro = {},
   bashls = {},
   cssls = {},
   emmet_ls = {
