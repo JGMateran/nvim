@@ -1,10 +1,15 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
-    config = function()
-      local gitsigns = require("gitsigns")
-
-      local on_attach = function(bufnr)
+    opts = {
+      signs = {
+        add = { text = "▎" },
+        change = { text = "▎" },
+        delete = { text = "▎" },
+        topdelete = { text = "▎" },
+        changedelete = { text = "▎" },
+      },
+      on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
 
         local function map(mode, l, r, opts)
@@ -50,52 +55,8 @@ return {
         map("n", "<leader>td", gs.toggle_deleted)
 
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
-      end
-
-      local signs = {
-        add = {
-          hl = "GitSignsAdd",
-          text = "▎",
-          numhl = "GitSignsAddNr",
-          linehl = "GitSignsAddLn",
-        },
-        change = {
-          hl = "GitSignsChange",
-          text = "▎",
-          numhl = "GitSignsChangeNr",
-          linehl = "GitSignsChangeLn",
-        },
-        delete = {
-          hl = "GitSignsDelete",
-          text = "▎",
-          numhl = "GitSignsDeleteNr",
-          linehl = "GitSignsDeleteLn",
-        },
-        topdelete = {
-          hl = "GitSignsDelete",
-          text = "▎",
-          numhl = "GitSignsDeleteNr",
-          linehl = "GitSignsDeleteLn",
-        },
-        changedelete = {
-          hl = "GitSignsChange",
-          text = "▎",
-          numhl = "GitSignsChangeNr",
-          linehl = "GitSignsChangeLn",
-        },
-        untracked = {
-          hl = "GitSignsAdd",
-          text = "▎",
-          numhl = "GitSignsAddNr",
-          linehl = "GitSignsAddLn",
-        },
-      }
-
-      gitsigns.setup({
-        on_attach = on_attach,
-        signs = signs,
-      })
-    end,
+      end,
+    },
   },
   {
     "tpope/vim-fugitive",
