@@ -38,6 +38,7 @@ return {
       "python",
       -- "go",
       "rust",
+      "jsdoc",
     },
   },
   config = function(_, opts)
