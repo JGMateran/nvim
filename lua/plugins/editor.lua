@@ -61,4 +61,12 @@ return {
       symbol = "┊",
     },
   },
+  {
+    "stevearc/dressing.nvim",
+    opts = {
+      win_options = {
+        winblend = 0,
+      },
+    },
+  },
 }
