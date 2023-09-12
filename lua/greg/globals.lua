@@ -7,6 +7,9 @@ vim.o.hlsearch = false
 vim.wo.number = true
 vim.o.relativenumber = true
 
+vim.o.splitbelow = true -- Put new windows below current
+vim.o.splitright = true -- Put new windows right of current
+
 vim.wo.wrap = false
 
 -- Enable mouse mode
