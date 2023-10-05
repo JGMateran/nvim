@@ -134,6 +134,7 @@ return {
       luasnip.config.setup({})
       require("luasnip.loaders.from_vscode").lazy_load()
 
+      ---@diagnostic disable: missing-fields
       cmp.setup({
         formatting = {
           format = cmp_format(),
