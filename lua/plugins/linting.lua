@@ -1,7 +1,7 @@
 return {
   {
     "mfussenegger/nvim-lint",
-    enabled = false,
+    enabled = true,
     config = function()
       local augroup = vim.api.nvim_create_augroup("LspLinting", { clear = true })
 
@@ -12,7 +12,7 @@ return {
         typescriptreact = { "eslint_d" },
       }
 
-      vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+      vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
         group = augroup,
         pattern = { "*.js", "*.ts", "*.jsx", "*.tsx" },
         callback = function()
@@ -23,7 +23,7 @@ return {
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
-    enabled = true,
+    enabled = false,
     config = function()
       local null_ls = require("null-ls")
       local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
