@@ -125,14 +125,14 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
-      "rafamadriz/friendly-snippets",
+      -- "rafamadriz/friendly-snippets",
     },
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
 
       luasnip.config.setup({})
-      require("luasnip.loaders.from_vscode").lazy_load()
+      -- require("luasnip.loaders.from_vscode").lazy_load()
 
       ---@diagnostic disable: missing-fields
       cmp.setup({
