@@ -22,6 +22,7 @@ return {
       enable = true,
     },
     ensure_installed = {
+      "vue",
       "astro",
       "bash",
       "css",
