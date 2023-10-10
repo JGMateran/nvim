@@ -48,11 +48,6 @@ return {
           javascriptreact = { { "eslint_d", "eslint" } },
           typescriptreact = { { "eslint_d", "eslint" } },
         },
-        format_on_save = {
-          -- These options will be passed to conform.format()
-          timeout_ms = 500,
-          lsp_fallback = true,
-        },
       })
 
       vim.api.nvim_create_autocmd("BufWritePre", {
