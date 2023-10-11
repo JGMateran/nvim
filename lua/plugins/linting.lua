@@ -1,7 +1,7 @@
 return {
   {
     "mfussenegger/nvim-lint",
-    enabled = false,
+    enabled = true,
     config = function()
       local augroup = vim.api.nvim_create_augroup("LspLinting", { clear = true })
 
@@ -23,7 +23,7 @@ return {
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
-    enabled = true,
+    enabled = false,
     config = function()
       local null_ls = require("null-ls")
       local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
