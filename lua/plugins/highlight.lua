@@ -40,6 +40,7 @@ return {
       -- "go",
       "rust",
       "jsdoc",
+      "php",
     },
     incremental_selection = {
       enable = true,
