@@ -59,7 +59,6 @@ local servers = {
       "typescriptreact",
     },
   },
-  phpactor = {},
   html = {},
   lua_ls = {},
   prismals = {},
