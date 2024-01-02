@@ -128,6 +128,7 @@ return {
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-path",
       -- "rafamadriz/friendly-snippets",
     },
     config = function()
@@ -183,6 +184,7 @@ return {
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "luasnip" },
+          { name = "path" },
         }, {
           { name = "buffer" },
         }),
