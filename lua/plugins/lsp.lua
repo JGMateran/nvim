@@ -127,7 +127,6 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-path",
       -- "rafamadriz/friendly-snippets",
     },
@@ -181,29 +180,11 @@ return {
             end
           end),
         }),
-        sources = cmp.config.sources({
+        sources = {
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "path" },
-        }, {
-          { name = "buffer" },
-        }),
-      })
-
-      cmp.setup.cmdline({ "/", "?" }, {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = "buffer" },
         },
-      })
-
-      cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-          { name = "path" },
-        }, {
-          { name = "cmdline" },
-        }),
       })
     end,
   },
