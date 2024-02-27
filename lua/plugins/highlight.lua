@@ -37,7 +37,7 @@ return {
       "typescript",
       "vim",
       "python",
-      -- "go",
+      "go",
       "rust",
       "jsdoc",
       "php",
