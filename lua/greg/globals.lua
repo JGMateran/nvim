@@ -1,7 +1,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.o.hlsearch = false
+vim.opt.hlsearch = true
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Make line numbers default
 vim.wo.number = true
