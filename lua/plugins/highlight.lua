@@ -38,9 +38,11 @@ return {
       "vim",
       "python",
       "go",
-      "rust",
       "jsdoc",
       "php",
+      "ron",
+      "rust",
+      "toml",
     },
     incremental_selection = {
       enable = true,
