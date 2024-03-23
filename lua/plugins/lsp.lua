@@ -37,10 +37,20 @@ local lsp_kind = {
   Variable = "",
 }
 
-local function cmp_format()
+---@class CmpFormatOptions
+---@field maxWidth number
+
+---@param opts CmpFormatOptions
+local function cmp_format(opts)
   return function(_, item)
     if lsp_kind[item.kind] then
       item.kind = lsp_kind[item.kind]
+    end
+
+    item.menu = ""
+
+    if #item.abbr > opts.maxWidth then
+      item.abbr = item.abbr:sub(1, opts.maxWidth) .. "…"
     end
 
     return item
@@ -59,7 +69,7 @@ local servers = {
       "typescriptreact",
     },
   },
-  phpactor = {},
+  -- phpactor = {},
   html = {},
   lua_ls = {},
   prismals = {},
@@ -67,9 +77,7 @@ local servers = {
   tailwindcss = {},
   tsserver = {},
   gopls = {},
-  rust_analyzer = {
-    cmd = { "rustup", "run", "stable", "rust-analyzer" },
-  },
+  rust_analyzer = {},
 }
 
 return {
@@ -142,7 +150,9 @@ return {
       ---@diagnostic disable: missing-fields
       cmp.setup({
         formatting = {
-          format = cmp_format(),
+          format = cmp_format({
+            maxWidth = 50,
+          }),
         },
         snippet = {
           expand = function(args)
@@ -186,6 +196,7 @@ return {
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "path" },
+          { name = "crates" },
         },
       })
     end,
