@@ -6,7 +6,6 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
       "nvim-telescope/telescope-fzf-native.nvim",
-      "nvim-telescope/telescope-file-browser.nvim",
     },
     opts = {
       defaults = {
@@ -21,17 +20,10 @@ return {
         },
         preview = false,
       },
-      extensions = {
-        file_browser = {
-          files = false,
-          display_stat = { date = false, size = true, mode = true },
-        },
-      },
     },
     config = function(_, opts)
       pcall(require("telescope").load_extension, "fzf")
       pcall(require("telescope").load_extension, "ui-select")
-      pcall(require("telescope").load_extension, "file_browser")
 
       require("telescope").setup(opts)
 
@@ -47,8 +39,6 @@ return {
 
       vim.keymap.set("n", "<leader>gf", builtin.git_files, { desc = "Search [G]it [F]iles" })
       vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-
-      vim.api.nvim_set_keymap("n", "<space>fb", ":Telescope file_browser<CR>", { noremap = true })
     end,
   },
 }
