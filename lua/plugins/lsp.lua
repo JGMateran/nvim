@@ -150,7 +150,7 @@ return {
       cmp.setup({
         formatting = {
           format = cmp_format({
-            maxWidth = 50,
+            maxWidth = 20,
           }),
         },
         snippet = {
