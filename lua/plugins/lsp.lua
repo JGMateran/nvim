@@ -77,7 +77,6 @@ local servers = {
   tailwindcss = {},
   tsserver = {},
   gopls = {},
-  rust_analyzer = {},
 }
 
 return {
