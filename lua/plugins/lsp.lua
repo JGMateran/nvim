@@ -87,10 +87,16 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      "williamboman/mason.nvim",
+      {
+        "williamboman/mason.nvim",
+        opts = {},
+      },
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-      "folke/neodev.nvim",
+      {
+        "folke/neodev.nvim",
+        opts = {},
+      },
     },
     keys = {
       { "<space>e", vim.diagnostic.open_float },
@@ -99,12 +105,8 @@ return {
       { "<space>q", vim.diagnostic.setloclist },
     },
     config = function()
-      require("neodev").setup()
-
       local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-      require("mason").setup()
 
       require("mason-tool-installer").setup({
         ensure_installed = vim.tbl_keys(servers),
