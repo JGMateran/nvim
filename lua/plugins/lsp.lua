@@ -81,22 +81,11 @@ local servers = {
 
 return {
   {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = {
-      "neovim/nvim-lspconfig",
-      {
-        "williamboman/mason.nvim",
-        opts = {},
-      },
-    },
-    opts = {
-      ensure_installed = vim.tbl_keys(servers),
-    },
-  },
-  {
     "neovim/nvim-lspconfig",
     dependencies = {
+      "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
       "folke/neodev.nvim",
     },
     keys = {
@@ -111,22 +100,23 @@ return {
       local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      local lsp_flags = {
-        debounce_text_change = 150,
-      }
+      require("mason").setup()
 
-      for server_name, settings in pairs(servers) do
-        if not settings then
-          settings = {}
-        end
+      require("mason-tool-installer").setup({
+        ensure_installed = vim.tbl_keys(servers),
+      })
 
-        lspconfig[server_name].setup({
-          flags = lsp_flags,
-          capabilities = capabilities,
-          settings = settings,
-          filetypes = settings.filetypes,
-        })
-      end
+      require("mason-lspconfig").setup({
+        handlers = {
+          function(server_name)
+            local server = servers[server_name] or {}
+
+            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+
+            lspconfig[server_name].setup(server)
+          end,
+        },
+      })
     end,
   },
   {
