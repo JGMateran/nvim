@@ -76,6 +76,7 @@ local servers = {
   pyright = {},
   tailwindcss = {},
   tsserver = {},
+  stylua = {},
 
   gopls = {},
   goimports = {},
