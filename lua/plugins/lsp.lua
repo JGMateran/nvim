@@ -76,7 +76,10 @@ local servers = {
   pyright = {},
   tailwindcss = {},
   tsserver = {},
+
   gopls = {},
+  goimports = {},
+  gofumpt = {},
 }
 
 return {

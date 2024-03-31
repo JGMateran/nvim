@@ -37,12 +37,15 @@ return {
       "typescript",
       "vim",
       "python",
-      "go",
       "jsdoc",
       "php",
       "ron",
       "rust",
       "toml",
+
+      "go",
+      "gomod",
+      "gosum",
     },
     incremental_selection = {
       enable = true,
