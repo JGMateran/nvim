@@ -6,11 +6,6 @@ return {
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
     },
-    keys = {
-      { "n", "<leader>rg", "<cmd>GoRun<cr>" },
-      { "n", "<leader>tf", "<cmd>GoTestFunc<jr>" },
-      { "n", "<leader>tr", "<cmd>GoTest<cr>" },
-    },
     config = function()
       require("go").setup()
 
