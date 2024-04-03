@@ -10,6 +10,7 @@ return {
       require("go").setup()
 
       local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+      local run_go = vim.api.nvim_create_augroup("run_go", {})
 
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*.go",
@@ -17,6 +18,16 @@ return {
           require("go.format").goimports()
         end,
         group = format_sync_grp,
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = run_go,
+        pattern = "go",
+        callback = function(e)
+          vim.keymap.set("n", "<leader>rr", "<cmd>GoRun<cr>", {
+            buffer = e.buf,
+          })
+        end,
       })
     end,
     event = { "CmdlineEnter" },
