@@ -69,7 +69,7 @@ local servers = {
       "typescriptreact",
     },
   },
-  -- phpactor = {},
+  intelephense = {},
   html = {},
   lua_ls = {},
   prismals = {},
