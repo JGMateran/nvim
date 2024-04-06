@@ -77,6 +77,7 @@ local servers = {
   tailwindcss = {},
   tsserver = {},
   stylua = {},
+  eslint_d = {},
 
   gopls = {},
   goimports = {},
