@@ -11,12 +11,25 @@ return {
         typescriptreact = { "eslint_d" },
       }
 
+      local function debounce(ms, fn)
+        local timer = vim.uv.new_timer()
+        return function(...)
+          local argv = { ... }
+          timer:start(ms, 0, function()
+            timer:stop()
+            vim.schedule_wrap(fn)(unpack(argv))
+          end)
+        end
+      end
+
+      local function lint()
+        require("lint").try_lint()
+      end
+
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
         group = augroup,
         pattern = { "*.js", "*.ts", "*.jsx", "*.tsx" },
-        callback = function()
-          require("lint").try_lint()
-        end,
+        callback = debounce(500, lint),
       })
     end,
   },
