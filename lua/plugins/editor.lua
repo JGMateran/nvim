@@ -73,9 +73,37 @@ return {
   },
   {
     "stevearc/dressing.nvim",
+    enabled = false,
     opts = {
       win_options = {
         winblend = 0,
+      },
+    },
+    {
+      "folke/noice.nvim",
+      enabled = true,
+      event = "VeryLazy",
+      opts = {
+        notify = {
+          enabled = false,
+        },
+        lsp = {
+          progress = {
+            enabled = false,
+          },
+        },
+      },
+      config = function(_, opts)
+        require("noice").setup(opts)
+
+        ---@diagnostic disable: missing-fields
+        require("notify").setup({
+          background_colour = "#000000",
+        })
+      end,
+      dependencies = {
+        "MunifTanjim/nui.nvim",
+        "rcarriga/nvim-notify",
       },
     },
   },
