@@ -64,6 +64,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
     vim.keymap.set("n", "<space>f", function()
       vim.lsp.buf.format({ async = true })
-    end, opts)
+    end, { desc = "LSP format" })
+  end,
+})
+
+-- resize splits if window got resized
+vim.api.nvim_create_autocmd({ "VimResized" }, {
+  group = vim.api.nvim_create_augroup("ResizeSplit", { clear = true }),
+  callback = function()
+    local current_tab = vim.fn.tabpagenr()
+    vim.cmd("tabdo wincmd =")
+    vim.cmd("tabnext " .. current_tab)
   end,
 })
