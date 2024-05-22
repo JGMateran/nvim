@@ -29,6 +29,14 @@ return {
         modified = {
           symbol = "",
         },
+        diagnostics = {
+          symbols = {
+            error = "",
+            warn = "",
+            hint = "",
+            info = " ",
+          },
+        },
         git_status = {
           symbols = {
             added = "",
