@@ -40,8 +40,8 @@ return {
       vim.keymap.set("n", "<leader>?", builtin.oldfiles, { desc = "Open old files" })
       vim.keymap.set("n", "sw", builtin.grep_string, {})
 
-      vim.keymap.set("n", "<leader>gf", builtin.git_files, { desc = "Search Git files" })
-      vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "Search diagnostics" })
+      vim.keymap.set("n", "<leader>gf", builtin.git_files, { desc = "Search [G]it [F]iles" })
+      vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
     end,
   },
 }
