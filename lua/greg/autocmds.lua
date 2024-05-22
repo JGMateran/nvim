@@ -1,28 +1,9 @@
-local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
-
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank()
   end,
-  group = highlight_group,
+  group = vim.api.nvim_create_augroup("YankHighlight", { clear = true }),
   pattern = "*",
-})
-
-local function load_signs(sign_icons)
-  for name, text in pairs(sign_icons) do
-    vim.fn.sign_define(name, {
-      texthl = name,
-      text = text,
-      numhl = "",
-    })
-  end
-end
-
-load_signs({
-  DiagnosticSignError = "",
-  DiagnosticSignWarn = "",
-  DiagnosticSignHint = "",
-  DiagnosticSignInfo = " ",
 })
 
 vim.api.nvim_create_autocmd("FileType", {

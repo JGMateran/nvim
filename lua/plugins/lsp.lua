@@ -143,6 +143,23 @@ return {
       luasnip.config.setup({})
       -- require("luasnip.loaders.from_vscode").lazy_load()
 
+      local function load_signs(sign_icons)
+        for name, text in pairs(sign_icons) do
+          vim.fn.sign_define(name, {
+            texthl = name,
+            text = text,
+            numhl = "",
+          })
+        end
+      end
+
+      load_signs({
+        DiagnosticSignError = "",
+        DiagnosticSignWarn = "",
+        DiagnosticSignHint = "",
+        DiagnosticSignInfo = " ",
+      })
+
       ---@diagnostic disable: missing-fields
       cmp.setup({
         formatting = {
