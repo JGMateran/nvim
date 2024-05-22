@@ -90,7 +90,7 @@ return {
     "sindrets/diffview.nvim",
     keys = {
       { "<leader>dh", "<cmd>DiffviewFileHistory<cr>", desc = "Open file history in Diffview" },
-      { "<leader>dc", "<cmd>DiffviewClose<cr>",       desc = "Close Diffview" },
+      { "<leader>dc", "<cmd>DiffviewClose<cr>", desc = "Close Diffview" },
     },
   },
 }
