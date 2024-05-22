@@ -2,18 +2,18 @@ return {
   {
     "mbbill/undotree",
     keys = {
-      { "<leader>u", vim.cmd.UndotreeToggle },
+      { "<leader>u", vim.cmd.UndotreeToggle, desc = "Open undo interface" },
     },
   },
   {
     "folke/trouble.nvim",
     keys = {
-      { "<leader>xx", "<cmd>TroubleToggle<cr>" },
-      { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>" },
-      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>" },
-      { "<leader>xl", "<cmd>TroubleToggle loclist<cr>" },
-      { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>" },
-      { "<leader>xR", "<cmd>TroubleToggle lsp_references<cr>" },
+      { "<leader>xx", "<cmd>TroubleToggle<cr>", desc = "Toggle Trouble" },
+      { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Toggle workspace diagnostics in Troubl" },
+      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Toggle document diagnostics in Trouble" },
+      { "<leader>xl", "<cmd>TroubleToggle loclist<cr>", desc = "Toggle loclist in Trouble" },
+      { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", desc = "Toggle quickfix list in Trouble" },
+      { "<leader>xR", "<cmd>TroubleToggle lsp_references<cr>", desc = "Toggle LSP references in Trouble" },
     },
   },
   {
