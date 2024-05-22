@@ -25,7 +25,18 @@ return {
       },
       sections = {
         lualine_a = { "mode" },
-        lualine_b = { "branch", "diagnostics" },
+        lualine_b = {
+          "branch",
+          {
+            "diagnostics",
+            symbols = {
+              error = " ",
+              warn = " ",
+              hint = "",
+              info = " ",
+            },
+          },
+        },
         lualine_c = {},
         lualine_x = {},
         lualine_y = { "filename" },
