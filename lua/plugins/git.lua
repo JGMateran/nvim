@@ -73,12 +73,12 @@ return {
       "tpope/vim-rhubarb",
     },
     keys = {
-      { "<leader>gg", "<cmd>G<cr>" },
-      { "<leader>gc", "<cmd>G commit<cr>" },
-      { "<leader>gu", "<cmd>G push<cr>" },
-      { "<leader>gp", "<cmd>G pull<cr>" },
-      { "<leader>gd", "<cmd>Gvdiffsplit<cr>" },
-      { "<leader>gb", "<cmd>G blame<cr>" },
+      { "<leader>gg", "<cmd>G<cr>", desc = "Git status" },
+      { "<leader>gc", "<cmd>G commit<cr>", desc = "Git commit" },
+      { "<leader>gu", "<cmd>G push<cr>", desc = "Git push" },
+      { "<leader>gp", "<cmd>G pull<cr>", desc = "Git pull" },
+      { "<leader>gd", "<cmd>Gvdiffsplit<cr>", desc = "Git diff" },
+      { "<leader>gb", "<cmd>G blame<cr>", desc = "Git blame" },
     },
   },
   {
