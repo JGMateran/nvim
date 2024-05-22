@@ -100,10 +100,10 @@ return {
       },
     },
     keys = {
-      { "<space>e", vim.diagnostic.open_float, desc = "Open float diagnostic" },
-      { "<space>[d", vim.diagnostic.goto_prev, desc = "Go to prev diagnostic" },
-      { "<space>]d", vim.diagnostic.goto_next, desc = "Go to next diagnostic" },
-      { "<space>q", vim.diagnostic.setloclist, desc = "Set diagnostics in location list" },
+      { "<space>e", vim.diagnostic.open_float, desc = "Open a floating message for the diagnostic" },
+      { "<space>[d", vim.diagnostic.goto_prev, desc = "Go to the previous diagnostic." },
+      { "<space>]d", vim.diagnostic.goto_next, desc = "Go to the next diagnostic" },
+      { "<space>q", vim.diagnostic.setloclist, desc = "Set the diagnostic location list" },
     },
     config = function()
       local lspconfig = require("lspconfig")
