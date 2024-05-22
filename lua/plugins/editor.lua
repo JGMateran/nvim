@@ -45,7 +45,7 @@ return {
       },
     },
     keys = {
-      { "<leader><tab>", "<cmd>Neotree toggle<cr>" },
+      { "<leader><tab>", "<cmd>Neotree toggle<cr>", desc = "Open Neotree" },
     },
   },
   {

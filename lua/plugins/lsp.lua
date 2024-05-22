@@ -100,10 +100,10 @@ return {
       },
     },
     keys = {
-      { "<space>e", vim.diagnostic.open_float },
-      { "<space>[d", vim.diagnostic.goto_prev },
-      { "<space>]d", vim.diagnostic.goto_next },
-      { "<space>q", vim.diagnostic.setloclist },
+      { "<space>e", vim.diagnostic.open_float, desc = "Open a floating message for the diagnostic" },
+      { "<space>[d", vim.diagnostic.goto_prev, desc = "Go to the previous diagnostic." },
+      { "<space>]d", vim.diagnostic.goto_next, desc = "Go to the next diagnostic" },
+      { "<space>q", vim.diagnostic.setloclist, desc = "Set the diagnostic location list" },
     },
     config = function()
       local lspconfig = require("lspconfig")
@@ -142,6 +142,23 @@ return {
 
       luasnip.config.setup({})
       -- require("luasnip.loaders.from_vscode").lazy_load()
+
+      local function load_signs(sign_icons)
+        for name, text in pairs(sign_icons) do
+          vim.fn.sign_define(name, {
+            texthl = name,
+            text = text,
+            numhl = "",
+          })
+        end
+      end
+
+      load_signs({
+        DiagnosticSignError = "",
+        DiagnosticSignWarn = "",
+        DiagnosticSignHint = "",
+        DiagnosticSignInfo = " ",
+      })
 
       ---@diagnostic disable: missing-fields
       cmp.setup({
