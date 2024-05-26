@@ -15,9 +15,6 @@ return {
         "python",
       },
     },
-    autotag = {
-      enable = true,
-    },
     playground = {
       enable = true,
     },
