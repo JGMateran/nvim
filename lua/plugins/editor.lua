@@ -106,7 +106,7 @@ return {
 
         ---@diagnostic disable: missing-fields
         require("notify").setup({
-          background_colour = "#000000",
+          background_colour = "#1E1E2E",
         })
       end,
       dependencies = {
