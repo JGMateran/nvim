@@ -54,6 +54,13 @@ return {
     },
     keys = {
       { "<leader><tab>", "<cmd>Neotree toggle<cr>", desc = "Open Neotree" },
+      {
+        "<leader>ge",
+        function()
+          require("neo-tree.command").execute({ source = "git_status", toggle = true })
+        end,
+        desc = "Git Explorer",
+      },
     },
   },
   {
