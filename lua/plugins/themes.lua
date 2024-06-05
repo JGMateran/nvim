@@ -13,38 +13,6 @@ return {
     end,
   },
   {
-    "nvim-lualine/lualine.nvim",
-    opts = {
-      options = {
-        -- theme = "tokyonight",
-        icons_enabled = false,
-        -- component_separators = "│",
-        component_separators = "",
-        section_separators = "",
-        globalstatus = true,
-      },
-      sections = {
-        lualine_a = { "mode" },
-        lualine_b = {
-          "branch",
-          {
-            "diagnostics",
-            symbols = {
-              error = " ",
-              warn = " ",
-              hint = "",
-              info = " ",
-            },
-          },
-        },
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = { "filename" },
-        lualine_z = { "location" },
-      },
-    },
-  },
-  {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
