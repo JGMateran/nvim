@@ -54,6 +54,13 @@ return {
     },
     keys = {
       { "<leader><tab>", "<cmd>Neotree toggle<cr>", desc = "Open Neotree" },
+      {
+        "<leader>ge",
+        function()
+          require("neo-tree.command").execute({ source = "git_status", toggle = true })
+        end,
+        desc = "Git Explorer",
+      },
     },
   },
   {
@@ -112,6 +119,38 @@ return {
       dependencies = {
         "MunifTanjim/nui.nvim",
         "rcarriga/nvim-notify",
+      },
+    },
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = {
+      options = {
+        -- theme = "tokyonight",
+        icons_enabled = false,
+        -- component_separators = "│",
+        component_separators = "",
+        section_separators = "",
+        globalstatus = true,
+      },
+      sections = {
+        lualine_a = { "mode" },
+        lualine_b = {
+          "branch",
+          {
+            "diagnostics",
+            symbols = {
+              error = " ",
+              warn = " ",
+              hint = " ",
+              info = " ",
+            },
+          },
+        },
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = { "filename" },
+        lualine_z = { "location" },
       },
     },
   },
