@@ -1,6 +1,11 @@
 return {
   {
     "supermaven-inc/supermaven-nvim",
-    opts = {},
+    opts = {
+      ignore_filetypes = {
+        ["neo-tree-popup"] = true,
+        ["TelescopePrompt"] = true,
+      },
+    },
   },
 }
