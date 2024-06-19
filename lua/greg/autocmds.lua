@@ -15,6 +15,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "Trouble",
     "lazy",
     "mason",
+    "markdown",
   },
   callback = function()
     vim.b.miniindentscope_disable = true
