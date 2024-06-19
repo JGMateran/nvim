@@ -134,6 +134,7 @@ return {
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
       -- "rafamadriz/friendly-snippets",
     },
     config = function()
@@ -162,6 +163,25 @@ return {
         text = " ",
         texthl = "DiagnosticSignHint",
       })
+
+      cmp.setup.cmdline({ "/", "?" }, {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = "buffer" },
+        },
+      })
+
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = "path" },
+        }, {
+          { name = "cmdline" },
+        }),
+        ---@diagnostic disable: missing-fields
+        matching = {
+          disallow_symbol_nonprefix_matching = false,
+        },
       })
 
       ---@diagnostic disable: missing-fields
