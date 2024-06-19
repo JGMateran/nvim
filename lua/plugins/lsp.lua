@@ -134,6 +134,7 @@ return {
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
       -- "rafamadriz/friendly-snippets",
     },
     config = function()
@@ -143,21 +144,44 @@ return {
       luasnip.config.setup({})
       -- require("luasnip.loaders.from_vscode").lazy_load()
 
-      local function load_signs(sign_icons)
-        for name, text in pairs(sign_icons) do
-          vim.fn.sign_define(name, {
-            texthl = name,
-            text = text,
-            numhl = "",
-          })
-        end
-      end
+      vim.fn.sign_define("DiagnosticSignError", {
+        text = " ",
+        texthl = "DiagnosticSignError",
+      })
 
-      load_signs({
-        DiagnosticSignError = "",
-        DiagnosticSignWarn = "",
-        DiagnosticSignHint = "",
-        DiagnosticSignInfo = " ",
+      vim.fn.sign_define("DiagnosticSignWarn", {
+        text = " ",
+        texthl = "DiagnosticSignWarn",
+      })
+
+      vim.fn.sign_define("DiagnosticSignInfo", {
+        text = " ",
+        texthl = "DiagnosticSignInfo",
+      })
+
+      vim.fn.sign_define("DiagnosticSignHint", {
+        text = " ",
+        texthl = "DiagnosticSignHint",
+      })
+
+      cmp.setup.cmdline({ "/", "?" }, {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = "buffer" },
+        },
+      })
+
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = "path" },
+        }, {
+          { name = "cmdline" },
+        }),
+        ---@diagnostic disable: missing-fields
+        matching = {
+          disallow_symbol_nonprefix_matching = false,
+        },
       })
 
       ---@diagnostic disable: missing-fields
