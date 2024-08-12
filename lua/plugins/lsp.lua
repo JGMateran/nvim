@@ -160,7 +160,7 @@ return {
       })
 
       vim.fn.sign_define("DiagnosticSignHint", {
-        text = " ",
+        text = "󰌵 ",
         texthl = "DiagnosticSignHint",
       })
 
