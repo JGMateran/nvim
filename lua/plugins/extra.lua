@@ -133,5 +133,20 @@ return {
       },
     },
   },
-}
+  {
+    "supermaven-inc/supermaven-nvim",
+    opts = {
+      ignore_filetypes = {
+        ["neo-tree-popup"] = true,
+        ["TelescopePrompt"] = true,
+      },
+      -- disable_inline_completion = true,
+      -- disable_keymaps = true,
+    },
+    init = function()
+      local api = require("supermaven-nvim.api")
 
+      api.use_free_version()
+    end,
+  },
+}
