@@ -58,7 +58,6 @@ local function cmp_format(opts)
 end
 
 local servers = {
-  volar = {},
   astro = {},
   bashls = {},
   cssls = {},
