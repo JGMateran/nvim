@@ -78,10 +78,6 @@ local servers = {
   tsserver = {},
   stylua = {},
   eslint_d = {},
-
-  gopls = {},
-  goimports = {},
-  gofumpt = {},
 }
 
 return {
