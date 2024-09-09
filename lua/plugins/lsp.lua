@@ -37,7 +37,7 @@ local servers = {
   -- prismals = {},
   -- pyright = {},
   tailwindcss = {},
-  tsserver = {},
+  ts_ls = {},
   stylua = {},
   eslint_d = {},
 }
