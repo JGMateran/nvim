@@ -32,6 +32,16 @@ return {
 
       local builtin = require("telescope.builtin")
 
+      vim.keymap.set("n", "<leader>/", function()
+        builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+          previewer = false,
+        }))
+      end, { desc = "[/] Fuzzily search in current buffer" })
+
+      vim.keymap.set("n", "<leader>sn", function()
+        builtin.find_files({ cwd = vim.fn.stdpath("config") })
+      end, { desc = "[S]earch [N]eovim files" })
+
       vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Open find files" })
       vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Open grep" })
       vim.keymap.set("n", "<leader><space>", builtin.buffers, { desc = "Open buffers" })
