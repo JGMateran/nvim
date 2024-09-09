@@ -38,19 +38,10 @@ return {
     opts = {},
   },
   {
-    "numToStr/Comment.nvim",
-    opts = {
-      pre_hook = function(...)
-        local loaded, ts_comment = pcall(require, "ts_context_commentstring.integrations.comment_nvim")
-
-        if loaded and ts_comment then
-          return ts_comment.create_pre_hook()(...)
-        end
-      end,
-    },
-    dependencies = {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-    },
+    "folke/ts-comments.nvim",
+    opts = {},
+    event = "VeryLazy",
+    enabled = vim.fn.has("nvim-0.10.0") == 1,
   },
   {
     "laytan/cloak.nvim",
