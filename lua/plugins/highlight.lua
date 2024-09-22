@@ -39,6 +39,7 @@ return {
       "ron",
       "rust",
       "toml",
+      "vimdoc",
 
       "go",
       "gomod",
