@@ -16,6 +16,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "lazy",
     "mason",
     "markdown",
+    "git",
   },
   callback = function()
     vim.b.miniindentscope_disable = true
@@ -51,6 +52,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<space>f", function()
       vim.lsp.buf.format({ async = true })
     end, { desc = "Format document" })
+
+    map("n", "<space>gs", "<cmd>Telescope git_status<cr>", { desc = "Git Status" })
+    map("n", "<space>gb", "<cmd>Telescope git_branches<cr>", { desc = "Git Branches" })
   end,
 })
 
