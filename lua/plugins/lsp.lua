@@ -40,6 +40,7 @@ local servers = {
   ts_ls = {},
   stylua = {},
   eslint_d = {},
+  jsonls = {},
 }
 
 return {
