@@ -60,9 +60,11 @@ return {
           local linter = opts.linters[name]
           if not linter then
             print("Linter not found: " .. name)
+
+            return false
           end
 
-          return linter and not (type(linter) == "table" and linter.condition and not linter.condition(ctx))
+          return linter.condition(ctx)
         end, names)
 
         lint.try_lint(filtered_names)
