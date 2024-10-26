@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "alpha",
     "dashboard",
     "neo-tree",
-    "Trouble",
+    "trouble",
     "lazy",
     "mason",
     "markdown",
