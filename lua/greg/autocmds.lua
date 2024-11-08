@@ -6,23 +6,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = {
-    "help",
-    "alpha",
-    "dashboard",
-    "neo-tree",
-    "trouble",
-    "lazy",
-    "mason",
-    "markdown",
-    "git",
-  },
-  callback = function()
-    vim.b.miniindentscope_disable = true
-  end,
-})
-
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(e)
