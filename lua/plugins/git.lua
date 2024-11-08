@@ -83,7 +83,6 @@ return {
       { "<leader>gu", "<cmd>G push<cr>", desc = "Git push" },
       { "<leader>gp", "<cmd>G pull<cr>", desc = "Git pull" },
       { "<leader>gd", "<cmd>Gvdiffsplit<cr>", desc = "Git diff" },
-      { "<leader>gb", "<cmd>G blame<cr>", desc = "Git blame" },
     },
   },
   {
