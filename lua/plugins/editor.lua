@@ -145,4 +145,44 @@ return {
       },
     },
   },
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = {
+      bigfile = { enabled = true },
+      quickfile = { enabled = true },
+      statuscolumn = { enabled = false },
+      words = { enabled = false },
+      notifier = {
+        enabled = true,
+        timeout = 3000,
+        style = "compact",
+      },
+      styles = {
+        notification = {
+          wo = {
+            wrap = true,
+            winblend = 0,
+          },
+        },
+      },
+    },
+    keys = {
+      {
+        "<leader>un",
+        function()
+          Snacks.notifier.hide()
+        end,
+        desc = "Dismiss All Notifications",
+      },
+      {
+        "<c-_>",
+        function()
+          Snacks.terminal()
+        end,
+        desc = "which_key_ignore",
+      },
+    },
+  },
 }
