@@ -40,6 +40,8 @@ return {
       "rust",
       "toml",
       "vimdoc",
+      "sql",
+      "http",
 
       "go",
       "gomod",

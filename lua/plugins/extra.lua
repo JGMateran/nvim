@@ -1,5 +1,33 @@
 return {
   {
+    "mistweaverco/kulala.nvim",
+    keys = {
+      {
+        "<leader>k",
+        '<cmd>lua require("kulala").run()<cr>',
+        desc = "Send the request",
+        ft = "http",
+      },
+    },
+    opts = {
+      split_direction = "horizontal",
+      icons = {
+        inlay = {
+          loading = " ",
+          done = " ",
+          error = " ",
+        },
+      },
+    },
+    init = function()
+      vim.filetype.add({
+        extension = {
+          ["http"] = "http",
+        },
+      })
+    end,
+  },
+  {
     "mbbill/undotree",
     keys = {
       { "<leader>u", vim.cmd.UndotreeToggle, desc = "Open undo interface" },
