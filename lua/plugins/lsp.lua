@@ -45,14 +45,22 @@ local servers = {
 
 return {
   {
+
+    "williamboman/mason.nvim",
+    opts = {
+      ui = {
+        width = 0.7,
+        height = 0.7,
+        border = "rounded",
+      },
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = {
-      {
-        "williamboman/mason.nvim",
-        opts = {},
-      },
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
+      "williamboman/mason.nvim",
     },
     keys = {
       { "<space>e", vim.diagnostic.open_float, desc = "Open a floating message for the diagnostic" },
