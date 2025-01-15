@@ -67,6 +67,13 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     opts = {
+      exclude = {
+        filetypes = {
+          "copilot-chat",
+          "markdown",
+          "markdown.mdx",
+        },
+      },
       indent = {
         char = "┊",
       },
