@@ -96,8 +96,11 @@ return {
           "lazy",
           "mason",
           "markdown",
+          "markdown.mdx",
           "git",
           "snacks_terminal",
+          "copilot-chat",
+          "git",
         },
         callback = function()
           vim.b.miniindentscope_disable = true
