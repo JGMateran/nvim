@@ -78,6 +78,7 @@ return {
     opts = {},
   },
   {
+    enabled = false,
     "karb94/neoscroll.nvim",
     opts = {},
   },
