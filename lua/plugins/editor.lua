@@ -208,6 +208,20 @@ return {
         end,
         desc = "which_key_ignore",
       },
+      {
+        "<leader>.",
+        function()
+          Snacks.scratch()
+        end,
+        desc = "Toggle Scratch Buffer",
+      },
+      {
+        "<leader>S",
+        function()
+          Snacks.scratch.select()
+        end,
+        desc = "Select Scratch Buffer",
+      },
     },
   },
 }
