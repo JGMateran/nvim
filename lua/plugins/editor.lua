@@ -72,6 +72,9 @@ return {
           "copilot-chat",
           "markdown",
           "markdown.mdx",
+          "git",
+          "undotree",
+          "fugitive",
         },
       },
       indent = {
@@ -108,6 +111,11 @@ return {
           "snacks_terminal",
           "copilot-chat",
           "git",
+          "snacks_dashboard",
+          "snacks_notif",
+          "Avante",
+          "undotree",
+          "fugitive",
         },
         callback = function()
           vim.b.miniindentscope_disable = true
