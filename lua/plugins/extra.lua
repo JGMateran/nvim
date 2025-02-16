@@ -219,4 +219,17 @@ return {
       },
     },
   },
+  {
+    "TobinPalmer/rayso.nvim",
+    cmd = { "Rayso" },
+    opts = {
+      open_cmd = "firefox",
+      options = {
+        background = true,
+        dark_mode = true,
+        padding = 32,
+        theme = "tailwind",
+      },
+    },
+  },
 }
