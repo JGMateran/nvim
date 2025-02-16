@@ -1,5 +1,8 @@
 return {
   {
+    "tjdevries/present.nvim",
+  },
+  {
     "mistweaverco/kulala.nvim",
     keys = {
       {
