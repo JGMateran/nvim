@@ -195,15 +195,27 @@ return {
   },
   {
     "stevearc/oil.nvim",
-    opts = {},
+    opts = {
+      win_options = {
+        number = false,
+        relativenumber = false,
+        cursorline = true,
+      },
+      float = {
+        preview_split = "right",
+        padding = 2,
+        max_width = 70,
+        max_height = 70,
+      },
+    },
     dependencies = {
       "nvim-tree/nvim-web-devicons",
     },
     keys = {
       {
         "-",
-        "<cmd>Oil<cr>",
-        desc = "Open Oil UI",
+        "<cmd>Oil --float<cr>",
+        desc = "Open Oil",
       },
     },
   },
