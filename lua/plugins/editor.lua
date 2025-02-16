@@ -181,6 +181,10 @@ return {
         style = "compact",
       },
       styles = {
+        scratch = {
+          width = 80,
+          height = 15,
+        },
         notification = {
           wo = {
             wrap = true,
