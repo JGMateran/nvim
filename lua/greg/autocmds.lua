@@ -68,7 +68,7 @@ vim.api.nvim_create_autocmd("LspProgress", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "fugitive", "gitcommit" },
+  pattern = { "fugitive", "gitcommit", "git" },
   callback = function()
     vim.opt.number = false
     vim.opt.relativenumber = false
