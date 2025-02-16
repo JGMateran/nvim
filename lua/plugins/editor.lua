@@ -150,7 +150,18 @@ return {
         },
         lualine_c = {},
         lualine_x = {},
-        lualine_y = { "filename" },
+        lualine_y = {
+          {
+            "filename",
+            path = 1,
+            symbols = {
+              modified = " ",
+              readonly = " ",
+              unnamed = " ",
+              newfile = " ",
+            },
+          },
+        },
         lualine_z = { "location" },
       },
     },
