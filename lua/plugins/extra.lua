@@ -188,13 +188,10 @@ return {
       ignore_filetypes = {
         ["neo-tree-popup"] = true,
         ["TelescopePrompt"] = true,
+        ["DressingInput"] = true,
+        ["oil"] = true,
       },
     },
-    init = function()
-      local api = require("supermaven-nvim.api")
-
-      api.use_free_version()
-    end,
   },
   {
     "stevearc/oil.nvim",
