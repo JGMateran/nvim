@@ -96,6 +96,14 @@ return {
       symbol = "┊",
     },
     init = function()
+      vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
+        callback = function()
+          if vim.bo.filetype == "" then
+            vim.b.miniindentscope_disable = true
+          end
+        end,
+      })
+
       vim.api.nvim_create_autocmd("FileType", {
         pattern = {
           "help",
