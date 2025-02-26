@@ -1,6 +1,7 @@
 return {
   {
     "rust-lang/rust.vim",
+    enabled = false,
     ft = { "rust" },
     init = function()
       vim.g.rustfmt_autosave = 1
@@ -8,30 +9,29 @@ return {
   },
   {
     "saecki/crates.nvim",
+    event = "BufRead Cargo.toml",
     ft = { "rust", "toml" },
     tag = "stable",
     config = function()
-      require("crates").setup()
+      require("crates").setup({})
     end,
   },
   {
     "mrcjkb/rustaceanvim",
-    version = "^4",
+    version = vim.fn.has("nvim-0.10.0") == 0 and "^4" or false,
     ft = { "rust" },
-    init = function()
-      local run_rust = vim.api.nvim_create_augroup("run_rust", {})
-
-      vim.api.nvim_create_autocmd("FileType", {
-        group = run_rust,
-        pattern = "rust",
-        callback = function(e)
+    lazy = false,
+    opts = {
+      server = {
+        on_attach = function(_, bufnr)
           vim.keymap.set("n", "<leader>rr", function()
-            vim.cmd.RustLsp("runnables")
-          end, {
-            buffer = e.buf,
-          })
+            vim.cmd.RustLsp("run")
+          end, { desc = "Rust Run", buffer = bufnr })
         end,
-      })
+      },
+    },
+    config = function(_, opts)
+      vim.g.rustaceanvim = vim.tbl_deep_extend("keep", vim.g.rustaceanvim or {}, opts or {})
     end,
   },
 }
