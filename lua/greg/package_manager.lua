@@ -22,4 +22,11 @@ require("lazy").setup({
   change_detection = {
     notify = false,
   },
+  ui = {
+    size = {
+      width = 0.7,
+      height = 0.7,
+    },
+    border = "rounded",
+  },
 })
