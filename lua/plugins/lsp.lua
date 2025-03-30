@@ -85,6 +85,7 @@ return {
         ensure_installed = vim.tbl_keys(servers),
       })
 
+      ---@diagnostic disable: missing-fields
       require("mason-lspconfig").setup({
         handlers = {
           function(server_name)
