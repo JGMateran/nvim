@@ -77,6 +77,14 @@ return {
           border = "rounded",
           max_width = 80,
         },
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = " ",
+            [vim.diagnostic.severity.WARN] = " ",
+            [vim.diagnostic.severity.INFO] = " ",
+            [vim.diagnostic.severity.HINT] = "󰌵 ",
+          },
+        },
       })
 
       vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
@@ -116,26 +124,6 @@ return {
 
       luasnip.config.setup({})
       -- require("luasnip.loaders.from_vscode").lazy_load()
-
-      vim.fn.sign_define("DiagnosticSignError", {
-        text = " ",
-        texthl = "DiagnosticSignError",
-      })
-
-      vim.fn.sign_define("DiagnosticSignWarn", {
-        text = " ",
-        texthl = "DiagnosticSignWarn",
-      })
-
-      vim.fn.sign_define("DiagnosticSignInfo", {
-        text = " ",
-        texthl = "DiagnosticSignInfo",
-      })
-
-      vim.fn.sign_define("DiagnosticSignHint", {
-        text = "󰌵 ",
-        texthl = "DiagnosticSignHint",
-      })
 
       cmp.setup.cmdline({ "/", "?" }, {
         mapping = cmp.mapping.preset.cmdline(),
