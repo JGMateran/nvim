@@ -12,6 +12,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- Enable completion triggered by <c-x><c-o>
     vim.bo[e.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
+    vim.diagnostic.config({
+      float = {
+        border = "rounded",
+        max_width = 80,
+      },
+    })
+
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+
     local function map(mode, l, r, opts)
       opts = opts or {}
       opts.buffer = e.buf
@@ -20,9 +29,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     map("n", "gD", vim.lsp.buf.declaration, { desc = "Show declaration" })
     map("n", "gd", "<cmd>Telescope lsp_definitions<cr>", { desc = "Show definitions" })
-    map("n", "K", vim.lsp.buf.hover, { desc = "Display detailed information about the symbol under the cursor" })
+    map("n", "K", function()
+      vim.lsp.buf.hover({
+        border = "rounded",
+        max_width = 80,
+      })
+    end, { desc = "Display detailed information about the symbol under the cursor" })
     map("n", "gi", "<cmd>Telescope lsp_implementations<cr>", { desc = "Show implementations" })
-    map("n", "<C-k>", vim.lsp.buf.signature_help, { desc = "Show signature help" })
+    map("n", "<C-k>", function()
+      vim.lsp.buf.signature_help({
+        border = "rounded",
+        max_width = 80,
+      })
+    end, { desc = "Show signature help" })
     map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, { desc = "Add workspace folder" })
     map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, { desc = "Remove workspace folder" })
     map("n", "<space>wl", function()
