@@ -64,8 +64,26 @@ return {
     },
     keys = {
       { "<space>e", vim.diagnostic.open_float, desc = "Open a floating message for the diagnostic" },
-      { "<space>[d", vim.diagnostic.goto_prev, desc = "Go to the previous diagnostic." },
-      { "<space>]d", vim.diagnostic.goto_next, desc = "Go to the next diagnostic" },
+      {
+        "<space>[d",
+        function()
+          vim.diagnostic.jump({
+            count = 1,
+            float = true,
+          })
+        end,
+        desc = "Go to the previous diagnostic.",
+      },
+      {
+        "<space>]d",
+        function()
+          vim.diagnostic.jump({
+            count = -1,
+            float = true,
+          })
+        end,
+        desc = "Go to the next diagnostic",
+      },
       { "<space>q", vim.diagnostic.setloclist, desc = "Set the diagnostic location list" },
     },
     config = function()
