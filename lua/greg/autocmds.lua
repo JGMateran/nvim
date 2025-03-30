@@ -12,15 +12,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- Enable completion triggered by <c-x><c-o>
     vim.bo[e.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-    vim.diagnostic.config({
-      float = {
-        border = "rounded",
-        max_width = 80,
-      },
-    })
-
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
-
     local function map(mode, l, r, opts)
       opts = opts or {}
       opts.buffer = e.buf

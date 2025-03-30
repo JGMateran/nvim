@@ -72,6 +72,15 @@ return {
       local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+      vim.diagnostic.config({
+        float = {
+          border = "rounded",
+          max_width = 80,
+        },
+      })
+
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+
       require("mason-tool-installer").setup({
         ensure_installed = vim.tbl_keys(servers),
       })
