@@ -41,6 +41,9 @@ local servers = {
   stylua = {},
   eslint_d = {},
   jsonls = {},
+  gopls = {},
+  goimports = {},
+  gofumpt = {},
 }
 
 return {
