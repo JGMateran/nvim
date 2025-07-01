@@ -124,6 +124,7 @@ return {
           "Avante",
           "undotree",
           "fugitive",
+          "AvanteConfirm",
         },
         callback = function()
           vim.b.miniindentscope_disable = true
