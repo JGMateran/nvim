@@ -6,25 +6,31 @@ return {
     version = false,
     opts = {
       provider = "gemini",
-      behaviour = {},
       hints = {
         enabled = false,
       },
       file_selector = {
         provider = "snacks",
-        height = 2,
       },
       windows = {
         sidebar_header = {
-          enabled = false,
+          enabled = true,
+          align = "center",
+          rounded = false,
         },
-        height = 40,
         input = {
           prefix = " ",
-          height = 3,
+          height = 1,
+        },
+        edit = {
+          border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+          start_insert = true,
         },
         ask = {
           floating = true,
+          border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+          start_insert = true,
+          focus_on_apply = "ours",
         },
         position = "right",
       },
@@ -34,7 +40,6 @@ return {
       "stevearc/dressing.nvim",
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
-      "echasnovski/mini.pick",
       "nvim-telescope/telescope.nvim",
       "hrsh7th/nvim-cmp",
       "ibhagwan/fzf-lua",
