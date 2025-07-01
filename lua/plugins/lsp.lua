@@ -34,7 +34,7 @@ local servers = {
   },
   html = {},
   lua_ls = {},
-  -- prismals = {},
+  prismals = {},
   -- pyright = {},
   tailwindcss = {},
   ts_ls = {},
@@ -44,6 +44,7 @@ local servers = {
   gopls = {},
   goimports = {},
   gofumpt = {},
+  prettierd = {},
 }
 
 return {
