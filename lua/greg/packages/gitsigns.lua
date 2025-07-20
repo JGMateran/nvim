@@ -3,14 +3,6 @@ vim.pack.add({
 })
 
 require("gitsigns").setup({
-  signs = {
-    add = { text = "▎" },
-    change = { text = "▎" },
-    delete = { text = "▎" },
-    topdelete = { text = "▎" },
-    changedelete = { text = "▎" },
-    untracked = { text = "▎" },
-  },
   on_attach = function(bufnr)
     local gs = package.loaded.gitsigns
 
@@ -64,11 +56,6 @@ require("gitsigns").setup({
     end, { desc = "Diff preview current line with previous version" })
     map("n", "<leader>td", gs.toggle_deleted, { desc = "Toggle deleted lines" })
 
-    map(
-      { "o", "x" },
-      "ih",
-      ":<C-U>Gitsigns select_hunk<CR>",
-      { desc = "Select current hunk in insert or visual mode" }
-    )
+    map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select current hunk in insert or visual mode" })
   end,
 })
