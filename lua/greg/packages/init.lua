@@ -11,6 +11,7 @@ require("greg.packages.conform")
 require("greg.packages.dressing")
 require("greg.packages.avante")
 require("greg.packages.gitsigns")
+require("greg.packages.fugitive")
 
 -- Load plugins from the 'extra' directory
 require("greg.packages.extra.present")
