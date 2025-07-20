@@ -9,4 +9,6 @@ require("yanky").setup({
   },
 })
 
-vim.keymap.set("n", "<leader>p", function() require("telescope").extensions.yank_history.yank_history({}) end, { desc = "Open yank history" })
+vim.keymap.set("n", "<leader>p", function()
+  require("telescope").extensions.yank_history.yank_history({})
+end, { desc = "Open yank history" })
