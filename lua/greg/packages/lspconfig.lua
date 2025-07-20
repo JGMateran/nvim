@@ -21,13 +21,7 @@ local servers = {
   astro = {},
   bashls = {},
   cssls = {},
-  emmet_ls = {
-    filetypes = {
-      "html",
-      "javascriptreact",
-      "typescriptreact",
-    },
-  },
+  emmet_language_server = {},
   html = {},
   lua_ls = {},
   prismals = {},
