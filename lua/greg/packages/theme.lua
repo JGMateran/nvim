@@ -12,9 +12,9 @@ catppuccin.setup({
     return {
       BlinkCmpMenu = { bg = colors.base },
       BlinkCmpMenuBorder = { fg = colors.blue },
-      BlinkCmpMenuSelection = { bg = colors.surface0 },
-      BlinkCmpLabel = { fg = colors.green },
       BlinkCmpDocBorder = { fg = colors.blue },
+      BlinkCmpMenuSelection = { bg = colors.surface0 },
+      BlinkCmpLabel = { fg = colors.text },
       BlinkCmpLabelMatch = { fg = colors.text },
     }
   end,
