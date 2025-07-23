@@ -9,10 +9,10 @@ require("greg.packages.lspconfig")
 require("greg.packages.blink")
 require("greg.packages.treesitter")
 require("greg.packages.conform")
-require("greg.packages.dressing")
 require("greg.packages.avante")
 require("greg.packages.gitsigns")
 require("greg.packages.fugitive")
+-- require("greg.packages.nvim-lint")
 
 -- Load plugins from the 'extra' directory
 require("greg.packages.extra.present")
