@@ -1,3 +1,4 @@
+require("greg.packages.devicons")
 require("greg.packages.theme")
 require("greg.packages.neo-tree")
 require("greg.packages.telescope")
