@@ -5,6 +5,7 @@ vim.pack.add({
 local snacks = require("snacks")
 
 snacks.setup({
+  input = {},
   indent = {
     enable = true,
     indent = {
@@ -15,7 +16,5 @@ snacks.setup({
       char = "┊",
     },
   },
-  statuscolumn = {
-    enable = true,
-  },
+  statuscolumn = {},
 })
