@@ -51,4 +51,3 @@ vim.keymap.set("n", "<leader><tab>", "<cmd>Neotree toggle<cr>", { desc = "Open N
 vim.keymap.set("n", "<leader>ge", function()
   require("neo-tree.command").execute({ source = "git_status", toggle = true })
 end, { desc = "Git Explorer" })
-
