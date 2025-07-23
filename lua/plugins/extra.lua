@@ -1,5 +1,18 @@
 return {
   {
+    "nvim-tree/nvim-web-devicons",
+    opts = {
+      override = {
+        css = {
+          icon = "",
+          name = "Css",
+          color = "#29abe1",
+          cterm_color = "91",
+        },
+      },
+    },
+  },
+  {
     "tjdevries/present.nvim",
   },
   {
