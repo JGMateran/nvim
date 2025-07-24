@@ -5,6 +5,7 @@ require("greg.packages.telescope")
 require("greg.packages.lualine")
 require("greg.packages.snacks")
 require("greg.packages.lspconfig")
+-- require("greg.packages.fzf-lua")
 -- require("greg.packages.supermaven") -- Old supermaven import
 require("greg.packages.blink")
 require("greg.packages.treesitter")
