@@ -4,10 +4,10 @@ return {
     opts = {
       formatters_by_ft = {
         lua = { "stylua" },
-        javascript = { "biome-check", "eslint_d", "eslint", stop_after_first = true },
-        typescript = { "biome-check", "eslint_d", "eslint", stop_after_first = true },
-        javascriptreact = { "biome-check", "eslint_d", "eslint", stop_after_first = true },
-        typescriptreact = { "biome-check", "eslint_d", "eslint", stop_after_first = true },
+        -- javascript = { "biome-check", "prettierd", "eslint_d", "eslint", stop_after_first = true },
+        typescript = { "prettierd" },
+        javascriptreact = { "prettierd" },
+        typescriptreact = { "prettierd" },
       },
     },
     config = function(_, opts)
