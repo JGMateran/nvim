@@ -16,6 +16,8 @@ catppuccin.setup({
       BlinkCmpMenuSelection = { bg = colors.surface0 },
       BlinkCmpLabel = { fg = colors.text },
       BlinkCmpLabelMatch = { fg = colors.text },
+      SnacksScope = { fg = colors.overlay0 },
+      SnacksIndentScope = { fg = colors.overlay2 },
     }
   end,
 })
