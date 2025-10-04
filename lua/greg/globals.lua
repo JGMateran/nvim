@@ -53,3 +53,5 @@ vim.opt.shiftwidth = 2
 
 -- vim.opt.cursorline = true
 vim.opt.laststatus = 3
+
+vim.opt.background = "dark"
