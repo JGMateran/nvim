@@ -1,5 +1,8 @@
 vim.pack.add({
-  "https://github.com/saghen/blink.cmp",
+  { 
+    src = "https://github.com/saghen/blink.cmp",
+    version = "v0.13.0"
+  },
 })
 
 local blink = require("blink-cmp")
@@ -10,25 +13,27 @@ blink.setup({
     ["<Tab>"] = {
       "snippet_forward",
       function()
-        return require("sidekick").nes_jump_or_apply()
-      end,
-      function()
-        return vim.lsp.inline_completion.get()
+        if vim.lsp.inline_completion then
+          return vim.lsp.inline_completion.get()
+        end
       end,
       "fallback",
     },
   },
+
+  signature = { enabled = true },
+
   appearance = {
     nerd_font_variant = "mono",
   },
+
   completion = {
+    ghost_text = { enabled = true },
     menu = {
       scrollbar = false,
       border = "rounded",
       draw = {
-        treesitter = {
-          "lsp",
-        },
+        treesitter = { "lsp" },
         columns = {
           { "label", "label_description", gap = 1 },
           { "kind_icon" },
@@ -36,15 +41,16 @@ blink.setup({
       },
     },
     documentation = {
-      auto_show = false,
-      window = {
-        border = "rounded",
-      },
+      auto_show = true,
+      window = { border = "rounded" },
     },
   },
+
   sources = {
     default = { "lsp", "path", "snippets", "buffer" },
   },
+
+  -- Usamos la librería local que acabamos de compilar exitosamente a mano
   fuzzy = { implementation = "prefer_rust_with_warning" },
 })
 

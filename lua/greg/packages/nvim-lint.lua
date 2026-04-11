@@ -4,10 +4,10 @@ vim.pack.add({
 
 local opts = {
   linters_by_ft = {
-    javascript = { "biomejs", "eslint" },
-    typescript = { "biomejs", "eslint" },
-    javascriptreact = { "biomejs", "eslint_d" },
-    typescriptreact = { "eslint_d" },
+    javascript = { "biomejs" },
+    typescript = { "biomejs" },
+    javascriptreact = { "biomejs" },
+    typescriptreact = { "biomejs" },
   },
   linters = {
     eslint_d = {

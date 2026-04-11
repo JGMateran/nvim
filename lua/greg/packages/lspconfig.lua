@@ -33,7 +33,11 @@ local servers = {
   gopls = {},
   goimports = {},
   gofumpt = {},
-  prettierd = {},
+  -- prettierd = {},
+  phpactor = {},
+  intelephense = {},
+  phpcs = {},
+  ["php-cs-fixer"] = {},
 }
 
 -- Setup mason
@@ -75,6 +79,8 @@ lazydev.setup({
 
 -- Configure diagnostics
 vim.diagnostic.config({
+  virtual_lines = true, -- Neovim 0.11+ feature
+  virtual_text = false,
   float = {
     border = "rounded",
     max_width = 80,

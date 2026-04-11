@@ -6,76 +6,10 @@ vim.pack.add({
 local fzf = require("fzf-lua")
 
 fzf.setup({
-  -- Tu configuración aquí si la necesitas
+  winopts = {
+    backdrop = 100,
+  },
+  fzf_opts = {
+    ["--pointer"] = " ",
+  },
 })
-
--- General Search
-vim.keymap.set("n", "<leader>ff", function()
-  fzf.files()
-end, { silent = true, desc = "Fuzzy Find Files" })
-vim.keymap.set("n", "<leader>fg", function()
-  fzf.live_grep()
-end, { silent = true, desc = "Live Grep" })
-vim.keymap.set("n", "<leader>fb", function()
-  fzf.buffers()
-end, { silent = true, desc = "Fuzzy Find Buffers" })
-vim.keymap.set("n", "<leader>fo", function()
-  fzf.oldfiles()
-end, { silent = true, desc = "Old Files" })
-
--- LSP Navigation
-vim.keymap.set("n", "<leader>fD", function()
-  fzf.lsp_definitions()
-end, { silent = true, desc = "LSP Definitions" })
-vim.keymap.set("n", "<leader>fr", function()
-  fzf.lsp_references()
-end, { silent = true, desc = "LSP References" })
-vim.keymap.set("n", "<leader>fI", function()
-  fzf.lsp_implementations()
-end, { silent = true, desc = "LSP Implementations" })
-vim.keymap.set("n", "<leader>fy", function()
-  fzf.lsp_type_definitions()
-end, { silent = true, desc = "LSP Type Definitions" })
-vim.keymap.set("n", "<leader>fd", function()
-  fzf.lsp_diagnostics()
-end, { silent = true, desc = "LSP Diagnostics" })
-
--- Git Integration
-vim.keymap.set("n", "<leader>fc", function()
-  fzf.git_commits()
-end, { silent = true, desc = "Git Commits" })
-vim.keymap.set("n", "<leader>fC", function()
-  fzf.git_bcommits()
-end, { silent = true, desc = "Git Buffer Commits" })
-vim.keymap.set("n", "<leader>fB", function()
-  fzf.git_branches()
-end, { silent = true, desc = "Git Branches" })
-vim.keymap.set("n", "<leader>fS", function()
-  fzf.git_status()
-end, { silent = true, desc = "Git Status" })
-vim.keymap.set("n", "<leader>fs", function()
-  fzf.git_stashes()
-end, { silent = true, desc = "Git Stashes" })
-vim.keymap.set("n", "<leader>fG", function()
-  fzf.git_files()
-end, { silent = true, desc = "Git Files" })
-
--- Neovim Utilities
-vim.keymap.set("n", "<leader>fh", function()
-  fzf.help_tags()
-end, { silent = true, desc = "Help Tags" })
-vim.keymap.set("n", "<leader>fk", function()
-  fzf.keymaps()
-end, { silent = true, desc = "Keymaps" })
-vim.keymap.set("n", "<leader>f;", function()
-  fzf.commands()
-end, { silent = true, desc = "Commands" })
-vim.keymap.set("n", "<leader>fR", function()
-  fzf.registers()
-end, { silent = true, desc = "Registers" })
-vim.keymap.set("n", "<leader>fq", function()
-  fzf.quickfix()
-end, { silent = true, desc = "Quickfix List" })
-vim.keymap.set("n", "<leader>fl", function()
-  fzf.loclist()
-end, { silent = true, desc = "Location List" })

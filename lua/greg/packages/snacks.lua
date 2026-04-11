@@ -6,6 +6,8 @@ local snacks = require("snacks")
 
 snacks.setup({
   input = {},
+  picker = {},
+  terminal = {},
   indent = {
     enable = true,
     indent = {
