@@ -17,7 +17,6 @@ require("greg.packages.nvim-lint")
 
 -- Load plugins from the 'extra' directory
 require("greg.packages.extra.present")
-require("greg.packages.extra.undotree")
 require("greg.packages.extra.trouble")
 require("greg.packages.extra.surround")
 require("greg.packages.extra.ts-autotag")
