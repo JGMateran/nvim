@@ -4,6 +4,7 @@ vim.pack.add({
   "https://github.com/mason-org/mason-lspconfig.nvim",
   "https://github.com/folke/lazydev.nvim",
   "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
+  "https://github.com/saghen/blink.cmp",
 })
 
 local lazydev = require("lazydev")
@@ -29,9 +30,8 @@ local servers = {
   "ts_ls",
   "bashls",
   "tailwindcss",
-  -- 'prisma',
+  "biome",
   "stylua",
-  "eslint_d",
 }
 
 mason_tool_installer.setup({
@@ -71,6 +71,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     local function map(mode, l, r, desc)
       vim.keymap.set(mode, l, r, { buffer = e.buf, desc = "LSP: " .. desc })
+    end
+
+    if client.server_capabilities.inlineCompletionProvider then
+      vim.lsp.completion.enable(true, client.id, e.buf, { autostart = true })
     end
 
     map("n", "gd", "<cmd>Telescope lsp_definitions<cr>", "Go to definition")

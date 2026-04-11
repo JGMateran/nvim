@@ -4,6 +4,18 @@ vim.pack.add({
 
 local lint = require("lint")
 
+local lint_conditions = {
+  eslint_d = {
+    ".eslintrc.js",
+    ".eslintrc.cjs",
+    ".eslintrc.yaml",
+    ".eslintrc.yml",
+    ".eslintrc.json",
+    "eslint.config.js",
+  },
+  biomejs = { "biome.json", "biome.jsonc" },
+}
+
 lint.linters_by_ft = {
   javascript = { "eslint_d", "biomejs" },
   typescript = { "eslint_d", "biomejs" },
@@ -14,9 +26,23 @@ lint.linters_by_ft = {
 local timer = vim.uv.new_timer()
 
 local function do_lint()
-  local names = lint._resolve_linter_by_ft(vim.bo.filetype)
+  local ft = vim.bo.filetype
+  local linters = lint.linters_by_ft[ft] or {}
+  local names = {}
+
+  -- Solo añadimos los linters que tengan archivo de configuración en el proyecto
+  for _, name in ipairs(linters) do
+    local config_files = lint_conditions[name]
+    if config_files then
+      local found = vim.fs.find(config_files, { upward = true, path = vim.fn.expand("%:p:h") })[1]
+      if found then
+        table.insert(names, name)
+      end
+    end
+  end
+
   if #names > 0 then
-    lint.try_lint()
+    lint.try_lint(names)
   end
 end
 
