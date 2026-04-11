@@ -133,6 +133,10 @@
       "rev": "0ab6a23b779e208c3733c48a380bf35e3ec1d49d",
       "src": "https://github.com/folke/sidekick.nvim"
     },
+    "smear-cursor.nvim": {
+      "rev": "c85bdbb25db096fbcf616bc4e1357bd61fe2c199",
+      "src": "https://github.com/sphamba/smear-cursor.nvim"
+    },
     "snacks.nvim": {
       "rev": "bfe8c26dbd83f7c4fbc222787552e29b4eccfcc0",
       "src": "https://github.com/folke/snacks.nvim"
