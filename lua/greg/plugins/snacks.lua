@@ -8,7 +8,22 @@ snacks.setup({
   input = {},
   select = {},
   notifier = {},
-  picker = {},
+  picker = {
+    sources = {
+      explorer = {
+        follow_file = true,
+        hidden = true,
+        ignored = true,
+        layout = {
+          layout = {
+            position = "left",
+            width = 30,
+          },
+        },
+      },
+    },
+  },
+  explorer = {},
   terminal = {},
   indent = {
     enable = true,
@@ -22,3 +37,11 @@ snacks.setup({
   },
   statuscolumn = {},
 })
+
+vim.keymap.set("n", "<leader><tab>", function()
+  snacks.explorer()
+end, { desc = "Open Snacks Explorer" })
+
+vim.keymap.set("n", "<leader>ge", function()
+  snacks.picker.git_status()
+end, { desc = "Git Explorer (Snacks)" })
