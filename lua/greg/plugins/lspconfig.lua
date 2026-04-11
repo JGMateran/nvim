@@ -3,7 +3,7 @@ vim.pack.add({
   "https://github.com/mason-org/mason.nvim",
   "https://github.com/mason-org/mason-lspconfig.nvim",
   "https://github.com/folke/lazydev.nvim",
-  "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim"
+  "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
 })
 
 local lazydev = require("lazydev")
@@ -21,21 +21,21 @@ mason.setup({
 })
 
 local servers = {
-	'lua_ls',
-	'jsonls',
-	'html',
-	'emmet_language_server',
-	'cssls',
-	'ts_ls',
-	'bashls',
-	'tailwindcss',
-	-- 'prisma',
-	'stylua',
-	'eslint_d'
+  "lua_ls",
+  "jsonls",
+  "html",
+  "emmet_language_server",
+  "cssls",
+  "ts_ls",
+  "bashls",
+  "tailwindcss",
+  -- 'prisma',
+  "stylua",
+  "eslint_d",
 }
 
 mason_tool_installer.setup({
-	ensure_installed = servers 
+  ensure_installed = servers,
 })
 
 vim.lsp.enable(servers)
