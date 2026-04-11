@@ -1,66 +1,52 @@
 vim.pack.add({
-  {
-    src = "https://github.com/nvim-lualine/lualine.nvim",
-  },
+  { src = "https://github.com/nvim-lualine/lualine.nvim" },
 })
 
-require("lualine").setup({})
+local lualine = require("lualine")
 
--- vim.pack.add({
---   "https://github.com/nvim-tree/nvim-web-devicons",
---   "https://github.com/nvim-lualine/lualine.nvim",
--- })
---
--- local lualine = require("lualine")
---
--- lualine.setup({
---   options = {
---     globalstatus = true,
---   },
---   sections = {
---     lualine_a = { "mode" },
---     lualine_b = {
---       "branch",
---       {
---         "diagnostics",
---         symbols = {
---           error = " ",
---           warn = " ",
---           hint = "󰌵 ",
---           info = " ",
---         },
---       },
---     },
---     lualine_c = {
---       function()
---         return " "
---       end,
---       color = function()
---         local status = require("sidekick.status").get()
---
---         if status then
---           return status.kind == "Error" and "DiagnosticError" or status.busy and "DiagnosticWarn" or "Special"
---         end
---       end,
---       cond = function()
---         local status = require("sidekick.status")
---
---         return status.get() ~= nil
---       end,
---     },
---     lualine_x = {},
---     lualine_y = {
---       {
---         "filename",
---         path = 1,
---         symbols = {
---           modified = " ",
---           readonly = " ",
---           unnamed = " ",
---           newfile = " ",
---         },
---       },
---     },
---     lualine_z = { "location" },
---   },
--- })
+local function lsp_status()
+  if vim.version().minor >= 12 then
+    return vim.ui.progress_status()
+  end
+  return ""
+end
+
+lualine.setup({
+  options = {
+    theme = "catppuccin",
+    globalstatus = true,
+    icons_enabled = true,
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
+    disabled_filetypes = { statusline = { "dashboard", "alpha", "neo-tree" } },
+  },
+  sections = {
+    lualine_a = { { "mode", icon = "" } },
+    lualine_b = {
+      { "branch", icon = "" },
+      { "diff", symbols = { added = "  ", modified = "  ", removed = "  " } },
+    },
+    lualine_c = {
+      {
+        "filename",
+        file_status = true,
+        path = 1,
+        symbols = {
+          modified = " ",
+          readonly = " ",
+          unnamed = " [No Name]",
+          newfile = " ",
+        },
+      },
+    },
+    lualine_x = {
+      { "diagnostics", symbols = { error = "  ", warn = "  ", info = "  ", hint = "󰌵  " } },
+      { lsp_status, icon = "" },
+    },
+    lualine_y = {
+      { "filetype", icon_only = true },
+      { "progress" },
+    },
+    lualine_z = { { "location" } },
+  },
+})

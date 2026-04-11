@@ -96,6 +96,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.keymap.set(mode, l, r, { buffer = e.buf, desc = "LSP: " .. desc })
     end
 
+    -- Native Inline Completion (Neovim 0.12+)
+    -- This handles the "ghost text" suggestions from servers like Supermaven/Copilot
+    -- if they are integrated via LSP.
+    if client.server_capabilities.inlineCompletionProvider then
+      vim.lsp.completion.enable(true, client.id, e.buf, { autostart = true })
+    end
+
     -- Premium Telescope mappings (Keep these!)
     map("n", "gd", "<cmd>Telescope lsp_definitions<cr>", "Go to definition")
     map("n", "gi", "<cmd>Telescope lsp_implementations<cr>", "Go to implementations")
