@@ -28,7 +28,7 @@ blink.setup({
   },
 
   completion = {
-    ghost_text = { enabled = true },
+    ghost_text = { enabled = false },
     menu = {
       scrollbar = false,
       border = "rounded",
