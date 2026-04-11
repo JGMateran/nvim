@@ -11,7 +11,6 @@ require("greg.plugins.conform")
 require("greg.plugins.gitsigns")
 require("greg.plugins.fugitive")
 require("greg.plugins.nvim-lint")
-
 require("greg.plugins.present")
 require("greg.plugins.trouble")
 require("greg.plugins.surround")
