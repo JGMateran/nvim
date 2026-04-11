@@ -56,3 +56,12 @@ vim.opt.shiftwidth = 2
 vim.opt.laststatus = 3
 
 vim.opt.background = "dark"
+
+-- Experimental Neovim 0.12+ UI redesign (ui2)
+-- Provides a cleaner command line and message experience.
+-- It avoids "Press ENTER" and improves the message pager.
+if vim.version().minor >= 12 then
+  pcall(function()
+    require("vim._core.ui2").enable()
+  end)
+end

@@ -6,6 +6,7 @@ vim.pack.add({
 })
 
 require("neo-tree").setup({
+  log_level = "info",
   window = {
     width = 30,
   },

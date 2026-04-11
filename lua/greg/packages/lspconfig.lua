@@ -118,7 +118,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, "Remove workspace folder")
 
     -- Formatting
-    map("n", "<space>f", function()
+    map("n", "<leader>cf", function()
       vim.lsp.buf.format({ async = true })
     end, "Format document")
   end,
