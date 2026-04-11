@@ -1,7 +1,6 @@
 vim.pack.add({
   "https://github.com/nvim-treesitter/nvim-treesitter",
   "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
-  "https://github.com/nvim-treesitter/playground",
 })
 
 require("nvim-treesitter.configs").setup({
@@ -17,9 +16,6 @@ require("nvim-treesitter.configs").setup({
     disable = {
       "python",
     },
-  },
-  playground = {
-    enable = true,
   },
   ensure_installed = {
     "vue",
@@ -45,12 +41,14 @@ require("nvim-treesitter.configs").setup({
     "vimdoc",
     "sql",
     "http",
-
     "go",
     "gomod",
     "gosum",
     "gowork",
   },
+  -- Neovim 0.12+ Native incremental selection
+  -- Maps v_an (outer) and v_in (inner) by default in core.
+  -- We keep custom mappings if you prefer different keys.
   incremental_selection = {
     enable = true,
     keymaps = {
