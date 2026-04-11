@@ -21,10 +21,7 @@ blink.setup({
     },
   },
 
-  signature = {
-    enabled = true,
-    window = { border = "rounded" },
-  },
+  signature = { enabled = false },
 
   appearance = {
     nerd_font_variant = "mono",

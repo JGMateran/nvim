@@ -80,6 +80,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
 
+    map({ "n", "i" }, "<C-k>", function()
+      vim.lsp.buf.signature_help({ border = "rounded" })
+    end, "Signature help")
+
     map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, "Add workspace folder")
     map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, "Remove workspace folder")
 
