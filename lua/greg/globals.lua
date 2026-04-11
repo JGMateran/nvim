@@ -25,6 +25,7 @@ vim.o.breakindent = true
 
 -- Save undo history
 vim.o.undofile = true
+vim.opt.swapfile = false
 
 -- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
@@ -53,3 +54,14 @@ vim.opt.shiftwidth = 2
 
 -- vim.opt.cursorline = true
 vim.opt.laststatus = 3
+
+vim.opt.background = "dark"
+
+-- Experimental Neovim 0.12+ UI redesign (ui2)
+-- Provides a cleaner command line and message experience.
+-- It avoids "Press ENTER" and improves the message pager.
+if vim.version().minor >= 12 then
+  pcall(function()
+    require("vim._core.ui2").enable()
+  end)
+end

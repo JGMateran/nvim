@@ -26,3 +26,9 @@ vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increases the vert
 vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decreases the vertical size" })
 vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize -2<cr>", { desc = "Decreases the horizontal size" })
 vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize +2<cr>", { desc = "Increases the horizontal size" })
+
+-- Native Undotree (Neovim 0.12+)
+vim.keymap.set("n", "<leader>u", function()
+  vim.cmd("packadd nvim.undotree")
+  vim.cmd("Undotree")
+end, { desc = "Open native undo interface" })
