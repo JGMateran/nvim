@@ -4,7 +4,7 @@ vim.pack.add({
 
 require("gitsigns").setup({
   on_attach = function(bufnr)
-    local gs = package.loaded.gitsigns
+    local gs = require("gitsigns")
 
     local function map(mode, l, r, opts)
       opts = opts or {}
@@ -14,23 +14,21 @@ require("gitsigns").setup({
 
     map("n", "]c", function()
       if vim.wo.diff then
-        return "]c"
+        vim.cmd.normal({ "]c", bang = true })
+      else
+        ---@diagnostic disable-next-line: param-type-mismatch
+        gs.nav_hunk("next")
       end
-      vim.schedule(function()
-        gs.next_hunk()
-      end)
-      return "<Ignore>"
-    end, { expr = true, desc = "Next hunk" })
+    end, { desc = "Next hunk" })
 
     map("n", "[c", function()
       if vim.wo.diff then
-        return "[c"
+        vim.cmd.normal({ "[c", bang = true })
+      else
+        ---@diagnostic disable-next-line: param-type-mismatch
+        gs.nav_hunk("prev")
       end
-      vim.schedule(function()
-        gs.prev_hunk()
-      end)
-      return "<Ignore>"
-    end, { expr = true, desc = "Previous hunk" })
+    end, { desc = "Previous hunk" })
 
     map("n", "<leader>hs", gs.stage_hunk, { desc = "Stage current hunk" })
     map("v", "<leader>hs", function()
@@ -43,7 +41,7 @@ require("gitsigns").setup({
     end, { desc = "Reset selected lines" })
 
     map("n", "<leader>hS", gs.stage_buffer, { desc = "Stage entire buffer" })
-    map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "Undo last hunk staging" })
+    map("n", "<leader>hu", gs.stage_hunk, { desc = "Undo last hunk staging (Toggle)" })
     map("n", "<leader>hR", gs.reset_buffer, { desc = "Reset entire buffer" })
     map("n", "<leader>hp", gs.preview_hunk, { desc = "Preview current hunk" })
     map("n", "<leader>hb", function()
@@ -52,9 +50,10 @@ require("gitsigns").setup({
     map("n", "<leader>tb", gs.toggle_current_line_blame, { desc = "Toggle blame for current line" })
     map("n", "<leader>hd", gs.diffthis, { desc = "Diff preview current line" })
     map("n", "<leader>hD", function()
+      ---@diagnostic disable-next-line: param-type-mismatch
       gs.diffthis("~")
     end, { desc = "Diff preview current line with previous version" })
-    map("n", "<leader>td", gs.toggle_deleted, { desc = "Toggle deleted lines" })
+    map("n", "<leader>td", gs.preview_hunk_inline, { desc = "Preview deleted/added lines inline" })
 
     map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select current hunk in insert or visual mode" })
   end,
