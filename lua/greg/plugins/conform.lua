@@ -7,21 +7,14 @@ local conform = require("conform")
 conform.setup({
   formatters_by_ft = {
     lua = { "stylua" },
-    javascript = { "oxfmt", "prettierd", "biome-check", stop_after_first = true },
-    typescript = { "oxfmt", "prettierd", "biome-check", stop_after_first = true },
-    javascriptreact = { "oxfmt", "prettier", "biome-check", stop_after_first = true },
-    typescriptreact = { "oxfmt", "prettierd", "biome-check", stop_after_first = true },
+    javascript = { "biome", "prettierd", stop_after_first = true },
+    typescript = { "biome", "prettierd", stop_after_first = true },
+    javascriptreact = { "biome", "prettierd", stop_after_first = true },
+    typescriptreact = { "biome", "prettierd", stop_after_first = true },
+    json = { "biome" },
   },
-})
-
-local group = vim.api.nvim_create_augroup("Conform", { clear = true })
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.js", "*.ts", "*.jsx", "*.tsx", "*.lua", "*.mjs" },
-  group = group,
-  callback = function(args)
-    conform.format({
-      bufnr = args.buf,
-    })
-  end,
+  format_on_save = {
+    timeout_ms = 500,
+    lsp_format = "fallback",
+  },
 })

@@ -2,76 +2,30 @@ vim.pack.add({
   "https://github.com/mfussenegger/nvim-lint",
 })
 
-local opts = {
-  linters_by_ft = {
-    javascript = { "biomejs" },
-    typescript = { "biomejs" },
-    javascriptreact = { "biomejs" },
-    typescriptreact = { "biomejs" },
-  },
-  linters = {
-    eslint_d = {
-      condition = function(ctx)
-        local files = vim.fs.find(
-          { ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.yaml", ".eslintrc.yml", ".eslintrc.json", "eslint.config.js" },
-          { upward = true, path = ctx.dirname }
-        )
+local lint = require("lint")
 
-        local found = files[1]
-
-        if found then
-          return true
-        end
-
-        return false
-      end,
-    },
-    biomejs = {
-      condition = function(ctx)
-        local files = vim.fs.find({ "biome.json", "biome.jsonc" }, { upward = true, path = ctx.dirname })
-        local found = files[1]
-
-        if found then
-          return true
-        end
-
-        return false
-      end,
-    },
-  },
+lint.linters_by_ft = {
+  javascript = { "eslint_d", "biomejs" },
+  typescript = { "eslint_d", "biomejs" },
+  javascriptreact = { "eslint_d", "biomejs" },
+  typescriptreact = { "eslint_d", "biomejs" },
 }
 
-local nvim_lint = require("lint")
+local timer = vim.uv.new_timer()
 
-nvim_lint.linters_by_ft = opts.linters_by_ft
-
-local function lint()
-  local names = nvim_lint._resolve_linter_by_ft(vim.bo.filetype)
-
-  local ctx = {}
-
-  ctx.filename = vim.api.nvim_buf_get_name(0)
-  ctx.dirname = vim.fn.fnamemodify(ctx.filename, ":h")
-
-  local filtered_names = vim.tbl_filter(function(name)
-    local linter = opts.linters[name]
-    if not linter then
-      print("Linter not found: " .. name)
-
-      return false
-    end
-
-    return linter.condition(ctx)
-  end, names)
-
-  nvim_lint.try_lint(filtered_names)
+local function do_lint()
+  local names = lint._resolve_linter_by_ft(vim.bo.filetype)
+  if #names > 0 then
+    lint.try_lint()
+  end
 end
 
-local lint_group = vim.api.nvim_create_augroup("LspLinting", { clear = true })
-
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  group = lint_group,
+vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
+  group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
   callback = function()
-    lint()
+    if timer then
+      timer:stop()
+      timer:start(100, 0, vim.schedule_wrap(do_lint))
+    end
   end,
 })
