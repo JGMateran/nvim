@@ -1,7 +1,7 @@
 vim.pack.add({
-  { 
+  {
     src = "https://github.com/saghen/blink.cmp",
-    version = "v0.13.0"
+    version = "v0.13.0",
   },
 })
 
