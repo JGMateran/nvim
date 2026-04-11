@@ -13,63 +13,7 @@ local mason_lspconfig = require("mason-lspconfig")
 local mason_tool_installer = require("mason-tool-installer")
 local lspconfig = require("lspconfig")
 
--- Use capabilities from blink.cmp
-local capabilities = require("blink-cmp").get_lsp_capabilities()
-
--- Merged list of servers from both files
-local servers = {
-  astro = {},
-  bashls = {},
-  cssls = {},
-  emmet_language_server = {},
-  html = {},
-  lua_ls = {},
-  prismals = {},
-  tailwindcss = {},
-  ts_ls = {},
-  stylua = {},
-  eslint_d = {},
-  jsonls = {},
-  gopls = {},
-  goimports = {},
-  gofumpt = {},
-  -- prettierd = {},
-  phpactor = {},
-  intelephense = {},
-  phpcs = {},
-  ["php-cs-fixer"] = {},
-}
-
--- Setup mason
-mason.setup({
-  ui = {
-    width = 0.7,
-    height = 0.7,
-    border = "rounded",
-  },
-})
-
--- Ensure servers are installed
-local ensure_installed = vim.tbl_keys(servers)
-mason_tool_installer.setup({
-  ensure_installed = ensure_installed,
-})
-
--- Setup mason-lspconfig to handle server configurations
-mason_lspconfig.setup({
-  handlers = {
-    function(server_name)
-      local server_opts = servers[server_name] or {}
-
-      -- Combine global capabilities with server-specific ones
-      server_opts.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server_opts.capabilities or {})
-
-      lspconfig[server_name].setup(server_opts)
-    end,
-  },
-})
-
--- Setup lazydev for lua development
+-- 1. Setup lazydev (must be before lspconfig)
 lazydev.setup({
   library = {
     { path = "luvit-meta/library", words = { "vim%.uv" } },
@@ -77,12 +21,16 @@ lazydev.setup({
   },
 })
 
--- Configure diagnostics
+-- 2. Configure diagnostics (Modern 0.12 syntax)
 vim.diagnostic.config({
-  virtual_lines = true, -- Neovim 0.11+ feature
+  virtual_lines = true, -- Highlight of 0.11+
   virtual_text = false,
+  update_in_insert = false,
+  underline = true,
+  severity_sort = true,
   float = {
     border = "rounded",
+    source = "if_many",
     max_width = 80,
   },
   signs = {
@@ -95,51 +43,91 @@ vim.diagnostic.config({
   },
 })
 
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+-- 3. Mason & LSP Servers setup
+local capabilities = require("blink-cmp").get_lsp_capabilities()
 
--- LSP Attach Autocommand
+local servers = {
+  astro = {},
+  bashls = {},
+  cssls = {},
+  emmet_language_server = {},
+  html = {},
+  lua_ls = {},
+  prismals = {},
+  tailwindcss = {},
+  ts_ls = {},
+  jsonls = {},
+  gopls = {},
+  phpactor = {},
+  intelephense = {},
+}
+
+mason.setup({
+  ui = { border = "rounded", width = 0.8, height = 0.8 },
+})
+
+local ensure_installed = vim.tbl_keys(servers)
+vim.list_extend(ensure_installed, { "stylua", "eslint_d", "goimports", "gofumpt" })
+
+mason_tool_installer.setup({ ensure_installed = ensure_installed })
+
+mason_lspconfig.setup({
+  handlers = {
+    function(server_name)
+      local server_opts = servers[server_name] or {}
+      server_opts.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server_opts.capabilities or {})
+
+      -- Using lspconfig for now as it's more stable for Mason integration
+      lspconfig[server_name].setup(server_opts)
+    end,
+  },
+})
+
+-- 4. Unified LspAttach Autocommand
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(e)
-    vim.bo[e.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
-    local function map(mode, l, r, opts)
-      opts = opts or {}
-      opts.buffer = e.buf
-      vim.keymap.set(mode, l, r, opts)
+    local client = vim.lsp.get_client_by_id(e.data.client_id)
+    if not client then
+      return
     end
 
-    map("n", "gD", vim.lsp.buf.declaration, { desc = "Show declaration" })
-    map("n", "gd", "<cmd>Telescope lsp_definitions<cr>", { desc = "Show definitions" })
-    map("n", "K", function()
-      vim.lsp.buf.hover({ border = "rounded", max_width = 80 })
-    end, { desc = "Display detailed information about the symbol under the cursor" })
-    map("n", "gi", "<cmd>Telescope lsp_implementations<cr>", { desc = "Show implementations" })
+    local function map(mode, l, r, desc)
+      vim.keymap.set(mode, l, r, { buffer = e.buf, desc = "LSP: " .. desc })
+    end
+
+    -- Premium Telescope mappings (Keep these!)
+    map("n", "gd", "<cmd>Telescope lsp_definitions<cr>", "Go to definition")
+    map("n", "gi", "<cmd>Telescope lsp_implementations<cr>", "Go to implementations")
+    map("n", "grr", "<cmd>Telescope lsp_references<cr>", "Show references")
+    map("n", "grt", "<cmd>Telescope lsp_type_definitions<cr>", "Go to type definition")
+
+    -- Neovim 0.12 Standard Mappings (The new convention)
+    map("n", "grn", vim.lsp.buf.rename, "Rename symbol")
+    map({ "n", "x" }, "gra", vim.lsp.buf.code_action, "Code action")
+
+    -- Other useful ones
+    map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
+    map("n", "gO", vim.lsp.buf.document_symbol, "Document symbols (Outline)")
     map("n", "<C-k>", function()
-      vim.lsp.buf.signature_help({ border = "rounded", max_width = 80 })
-    end, { desc = "Show signature help" })
-    map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, { desc = "Add workspace folder" })
-    map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, { desc = "Remove workspace folder" })
-    map("n", "<space>wl", function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, { desc = "List workspace folders" })
-    map("n", "<space>D", "<cmd>Telescope lsp_type_definitions<cr>", { desc = "Show type definitions" })
-    map("n", "<space>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
-    map({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+      vim.lsp.buf.signature_help({ border = "rounded" })
+    end, "Signature help")
+
+    -- Workspace Management
+    map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, "Add workspace folder")
+    map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, "Remove workspace folder")
+
+    -- Formatting
     map("n", "<space>f", function()
       vim.lsp.buf.format({ async = true })
-    end, { desc = "Format document" })
-    map("n", "<space>gs", "<cmd>Telescope git_status<cr>", { desc = "Git Status" })
-    map("n", "<space>gb", "<cmd>Telescope git_branches<cr>", { desc = "Git Branches" })
+    end, "Format document")
   end,
 })
 
--- Diagnostic Keymaps
-vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, { desc = "Open a floating message for the diagnostic" })
-vim.keymap.set("n", "<space>[d", function()
+vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, { desc = "Floating diagnostic" })
+vim.keymap.set("n", "[d", function()
   vim.diagnostic.jump({ count = 1, float = true })
-end, { desc = "Go to the previous diagnostic." })
-vim.keymap.set("n", "<space>]d", function()
+end, { desc = "Next diagnostic" })
+vim.keymap.set("n", "]d", function()
   vim.diagnostic.jump({ count = -1, float = true })
-end, { desc = "Go to the next diagnostic" })
-vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, { desc = "Set the diagnostic location list" })
+end, { desc = "Prev diagnostic" })
