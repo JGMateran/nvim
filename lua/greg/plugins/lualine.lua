@@ -30,7 +30,7 @@ lualine.setup({
       {
         "filename",
         file_status = true,
-        path = 1,
+        path = 2,
         symbols = {
           modified = " ",
           readonly = " ",
