@@ -11,7 +11,7 @@ local fd_command = vim.fn.executable("fdfind") == 1 and "fdfind" or "fd"
 
 telescope.setup({
   defaults = {
-    path_display = { "smart" },
+    -- path_display = { "smart" },
     prompt_prefix = "   ",
     selection_caret = "  ",
     entry_prefix = "  ",
@@ -43,14 +43,6 @@ telescope.setup({
       "--hidden",
       "--glob",
       "!**/.git/*",
-    },
-    mappings = {
-      i = {
-        ["<C-n>"] = actions.cycle_history_next,
-        ["<C-p>"] = actions.cycle_history_prev,
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
-      },
     },
   },
   pickers = {
