@@ -50,8 +50,10 @@ blink.setup({
     default = { "lsp", "path", "snippets", "buffer" },
   },
 
-  -- Usamos la librería local que acabamos de compilar exitosamente a mano
+  cmdline = {
+    enabled = true,
+    keymap = { preset = "cmdline" },
+  },
+
   fuzzy = { implementation = "prefer_rust_with_warning" },
 })
-
--- vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { fg = "#00ff00" })
