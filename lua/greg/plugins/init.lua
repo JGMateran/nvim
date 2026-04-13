@@ -1,7 +1,7 @@
 require("greg.plugins.devicons")
 require("greg.plugins.theme")
 -- require("greg.plugins.neo-tree")
-require("greg.plugins.telescope")
+-- require("greg.plugins.telescope")
 require("greg.plugins.lualine")
 require("greg.plugins.snacks")
 require("greg.plugins.lspconfig")

@@ -14,6 +14,7 @@ local mason_tool_installer = require("mason-tool-installer")
 lazydev.setup({
   library = {
     { path = "luvit-meta/library", words = { "vim%.uv" } },
+    { path = "snacks.nvim", words = { "Snacks" } },
   },
 })
 
@@ -79,10 +80,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.completion.enable(true, client.id, e.buf, { autostart = true })
     end
 
-    map("n", "gd", "<cmd>Telescope lsp_definitions<cr>", "Go to definition")
-    map("n", "gi", "<cmd>Telescope lsp_implementations<cr>", "Go to implementations")
-    map("n", "grr", "<cmd>Telescope lsp_references<cr>", "Show references")
-    map("n", "grt", "<cmd>Telescope lsp_type_definitions<cr>", "Go to type definition")
+    map("n", "gd", function()
+      Snacks.picker.lsp_definitions()
+    end, "Go to definition")
+    map("n", "gi", function()
+      Snacks.picker.lsp_implementations()
+    end, "Go to implementations")
+    map("n", "grr", function()
+      Snacks.picker.lsp_references()
+    end, "Show references")
+    map("n", "grt", function()
+      Snacks.picker.lsp_type_definitions()
+    end, "Go to type definition")
 
     map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
 

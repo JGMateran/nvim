@@ -7,7 +7,7 @@ local supermaven = require("supermaven-nvim")
 supermaven.setup({
   ignore_filetypes = {
     ["neo-tree-popup"] = true,
-    ["TelescopePrompt"] = true,
+    ["snacks_picker_input"] = true,
     ["DressingInput"] = true,
     ["oil"] = true,
   },
