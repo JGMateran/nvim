@@ -1,7 +1,6 @@
 vim.pack.add({
   {
     src = "https://github.com/saghen/blink.cmp",
-    version = "v0.13.0",
   },
 })
 
@@ -55,5 +54,10 @@ blink.setup({
     keymap = { preset = "cmdline" },
   },
 
-  fuzzy = { implementation = "prefer_rust_with_warning" },
+  fuzzy = {
+    implementation = "prefer_rust_with_warning",
+    prebuilt_binaries = {
+      download = true,
+    },
+  },
 })
