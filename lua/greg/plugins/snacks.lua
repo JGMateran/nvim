@@ -9,6 +9,14 @@ snacks.setup({
   select = {},
   notifier = {},
   picker = {
+    layout = {
+      backdrop = false,
+    },
+    win = {
+      input = { backdrop = false },
+      list = { backdrop = false },
+      preview = { backdrop = false },
+    },
     sources = {
       explorer = {
         auto_close = false,
@@ -22,6 +30,11 @@ snacks.setup({
           },
         },
       },
+    },
+  },
+  styles = {
+    float = {
+      backdrop = false,
     },
   },
   explorer = {},
