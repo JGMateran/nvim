@@ -11,6 +11,7 @@ snacks.setup({
   picker = {
     sources = {
       explorer = {
+        auto_close = false,
         follow_file = true,
         hidden = true,
         ignored = true,
