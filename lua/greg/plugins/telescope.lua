@@ -5,7 +5,6 @@ vim.pack.add({
 })
 
 local telescope = require("telescope")
-local actions = require("telescope.actions")
 
 local fd_command = vim.fn.executable("fdfind") == 1 and "fdfind" or "fd"
 
