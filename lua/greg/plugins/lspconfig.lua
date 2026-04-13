@@ -32,6 +32,8 @@ local servers = {
   "tailwindcss",
   "biome",
   "stylua",
+  "eslint_d",
+  "prettierd",
 }
 
 mason_tool_installer.setup({
