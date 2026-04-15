@@ -29,6 +29,20 @@ snacks.setup({
             width = 30,
           },
         },
+        win = {
+          input = {
+            keys = {
+              ["<Esc>"] = false,
+              ["q"] = false,
+            },
+          },
+          list = {
+            keys = {
+              ["<Esc>"] = false,
+              ["q"] = false,
+            },
+          },
+        },
       },
     },
   },
@@ -60,7 +74,7 @@ local map = vim.keymap.set
 -- Explorador
 map("n", "<leader><tab>", function()
   snacks.explorer()
-end, { desc = "Open Snacks Explorer" })
+end, { desc = "Toggle Snacks Explorer" })
 
 -- Buscadores (Picker)
 map("n", "<leader>ff", function()
