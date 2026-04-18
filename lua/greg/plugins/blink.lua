@@ -27,6 +27,9 @@ blink.setup({
   },
 
   completion = {
+    list = {
+      selection = { preselect = true, auto_insert = true },
+    },
     ghost_text = { enabled = false },
     menu = {
       scrollbar = false,
