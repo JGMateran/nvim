@@ -65,3 +65,7 @@ if vim.version().minor >= 12 then
     require("vim._core.ui2").enable()
   end)
 end
+
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
