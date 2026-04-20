@@ -70,3 +70,17 @@ vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 vim.opt.foldtext = ""
+
+-- Modern Diff UI Settings (Neovim 0.10+ / 0.12+)
+vim.opt.diffopt = {
+  "internal",
+  "filler",
+  "closeoff",
+  "hiddenoff",
+  "algorithm:histogram",
+  "linematch:60",
+  "inline:word",
+}
+
+-- Remove the ugly dashed lines "----" in diff filler areas
+vim.opt.fillchars:append({ diff = " " })
