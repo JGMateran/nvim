@@ -43,6 +43,10 @@ mason_tool_installer.setup({
 
 vim.lsp.enable(servers)
 
+if vim.lsp.document_color then
+  vim.lsp.document_color.enable(true, nil, { style = "virtual" })
+end
+
 vim.diagnostic.config({
   virtual_lines = false,
   virtual_text = false,
