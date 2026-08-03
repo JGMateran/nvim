@@ -6,6 +6,9 @@ require("yanky").setup({
   highlight = {
     timer = 150,
   },
+  textobj = {
+    enabled = true,
+  },
 })
 
 vim.keymap.set("n", "<leader>p", function()

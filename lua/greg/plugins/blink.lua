@@ -20,7 +20,14 @@ blink.setup({
     },
   },
 
-  signature = { enabled = false },
+  signature = {
+    enabled = true,
+    trigger = {
+      enabled = true,
+      show_on_insert = true,
+      show_on_trigger_character = true,
+    },
+  },
 
   appearance = {
     nerd_font_variant = "mono",
