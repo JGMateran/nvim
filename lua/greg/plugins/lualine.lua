@@ -40,8 +40,8 @@ lualine.setup({
       },
     },
     lualine_x = {
-      { "diagnostics", symbols = { error = "  ", warn = "  ", info = "  ", hint = "󰌵  " } },
-      { lsp_status, icon = "" },
+      { "diagnostics", symbols = { error = "", warn = "", info = "", hint = "󰌵  " } },
+      { lsp_status, icon = "", show_name = true },
     },
     lualine_y = {
       { "filetype", icon_only = true },
