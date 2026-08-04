@@ -7,11 +7,11 @@ local conform = require("conform")
 conform.setup({
   formatters_by_ft = {
     lua = { "stylua" },
-    javascript = { "oxfmt", "oxlint", stop_after_first = false },
-    typescript = { "oxfmt", "oxlint", stop_after_first = false },
-    javascriptreact = { "oxfmt", "oxlint", stop_after_first = false },
-    typescriptreact = { "oxfmt", "oxlint", stop_after_first = false },
-    json = { "oxfmt" },
+    javascript = { "oxfmt", "biome", "prettierd", stop_after_first = true },
+    typescript = { "oxfmt", "biome", "prettierd", stop_after_first = true },
+    javascriptreact = { "oxfmt", "biome", "prettierd", stop_after_first = true },
+    typescriptreact = { "oxfmt", "biome", "prettierd", stop_after_first = true },
+    json = { "oxfmt", "biome", "prettierd", stop_after_first = true },
   },
   format_on_save = {
     timeout_ms = 500,
