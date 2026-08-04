@@ -99,6 +99,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
 
+    map("n", "K", function()
+      vim.lsp.buf.hover({ border = "rounded", max_width = 80, max_height = 30 })
+    end, "LSP Hover")
+
     map({ "n", "i" }, "<C-k>", function()
       vim.lsp.buf.signature_help({ border = "rounded" })
     end, "Signature help")
