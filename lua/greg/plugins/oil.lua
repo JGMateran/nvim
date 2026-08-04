@@ -33,8 +33,8 @@ require("oil").setup({
     end,
   },
   float = {
-    padding = 2,
-    max_width = 0,
+    padding = 1,
+    max_width = 0.7,
     max_height = 0,
     border = "rounded",
     win_options = {
