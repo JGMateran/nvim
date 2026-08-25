@@ -21,12 +21,7 @@ blink.setup({
   },
 
   signature = {
-    enabled = true,
-    trigger = {
-      enabled = true,
-      show_on_insert = true,
-      show_on_trigger_character = true,
-    },
+    enabled = false,
   },
 
   appearance = {
