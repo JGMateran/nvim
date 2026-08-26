@@ -49,9 +49,7 @@ end
 
 vim.diagnostic.config({
   virtual_lines = false,
-  virtual_text = {
-    current_line = true,
-  },
+  virtual_text = false,
   update_in_insert = false,
   underline = true,
   severity_sort = true,
