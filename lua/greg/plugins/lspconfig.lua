@@ -49,7 +49,9 @@ end
 
 vim.diagnostic.config({
   virtual_lines = false,
-  virtual_text = false,
+  virtual_text = {
+    current_line = true,
+  },
   update_in_insert = false,
   underline = true,
   severity_sort = true,
@@ -84,6 +86,37 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.completion.enable(true, client.id, e.buf, { autostart = true })
     end
 
+    -- Enable Inlay Hints if supported
+    if client:supports_method("textDocument/inlayHint") then
+      vim.lsp.inlay_hint.enable(true, { bufnr = e.buf })
+    end
+
+    -- Enable CodeLens refresh if supported
+    if client:supports_method("textDocument/codeLens") then
+      vim.lsp.codelens.refresh({ bufnr = e.buf })
+      vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+        buffer = e.buf,
+        callback = function()
+          vim.lsp.codelens.refresh({ bufnr = e.buf })
+        end,
+      })
+    end
+
+    -- Document highlight on cursor hold
+    if client:supports_method("textDocument/documentHighlight") then
+      local hl_group = vim.api.nvim_create_augroup("LspDocumentHighlight", { clear = false })
+      vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+        buffer = e.buf,
+        group = hl_group,
+        callback = vim.lsp.buf.document_highlight,
+      })
+      vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+        buffer = e.buf,
+        group = hl_group,
+        callback = vim.lsp.buf.clear_references,
+      })
+    end
+
     map("n", "gd", function()
       Snacks.picker.lsp_definitions()
     end, "Go to definition")
@@ -107,6 +140,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.buf.signature_help({ border = "rounded" })
     end, "Signature help")
 
+    map("n", "<leader>ca", vim.lsp.buf.code_action, "Code action")
+    map("n", "<leader>cr", vim.lsp.buf.rename, "Rename symbol")
+    map("n", "<leader>cl", vim.lsp.codelens.run, "Run CodeLens")
+
+    -- Toggles
+    map("n", "<leader>th", function()
+      local current = vim.lsp.inlay_hint.is_enabled({ bufnr = e.buf })
+      vim.lsp.inlay_hint.enable(not current, { bufnr = e.buf })
+    end, "Toggle Inlay Hints")
+
     map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, "Add workspace folder")
     map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, "Remove workspace folder")
 
@@ -116,4 +159,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+-- Diagnostic mappings with auto-float
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, { desc = "Floating diagnostic" })
+vim.keymap.set("n", "]d", function()
+  vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = "Next Diagnostic" })
+vim.keymap.set("n", "[d", function()
+  vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = "Prev Diagnostic" })
+vim.keymap.set("n", "]e", function()
+  vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR, float = true })
+end, { desc = "Next Error" })
+vim.keymap.set("n", "[e", function()
+  vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR, float = true })
+end, { desc = "Prev Error" })

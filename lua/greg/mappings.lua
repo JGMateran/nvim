@@ -27,8 +27,17 @@ vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decreases the ve
 vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize -2<cr>", { desc = "Decreases the horizontal size" })
 vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize +2<cr>", { desc = "Increases the horizontal size" })
 
+vim.keymap.set("v", "<", "<gv", { desc = "Indent left and keep selection" })
+vim.keymap.set("v", ">", ">gv", { desc = "Indent right and keep selection" })
+
+-- Terminal mode exit
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
 -- Native Undotree (Neovim 0.12+)
 vim.keymap.set("n", "<leader>u", function()
   vim.cmd("packadd nvim.undotree")
   vim.cmd("Undotree")
 end, { desc = "Open native undo interface" })
+
+-- Neovim 0.12+ Restart
+vim.keymap.set("n", "<leader>qr", "<cmd>restart<cr>", { desc = "Restart Neovim in place" })

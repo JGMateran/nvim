@@ -4,57 +4,55 @@ vim.g.maplocalleader = " "
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- Make line numbers default
-vim.wo.number = true
-vim.o.relativenumber = true
+-- Line numbers
+vim.opt.number = true
+vim.opt.relativenumber = true
 
-vim.o.splitbelow = true -- Put new windows below current
-vim.o.splitright = true -- Put new windows right of current
+-- Split windows
+vim.opt.splitbelow = true -- Put new windows below current
+vim.opt.splitright = true -- Put new windows right of current
 
-vim.wo.wrap = false
+vim.opt.wrap = false
+vim.opt.breakindent = true
+vim.opt.smoothscroll = true
 
--- Enable mouse mode
-vim.o.mouse = "a"
-
+-- Mouse and clipboard
+vim.opt.mouse = "a"
 vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
 end)
 
--- Enable break indent
-vim.o.breakindent = true
-
--- Save undo history
-vim.o.undofile = true
+-- Undo and swap
+vim.opt.undofile = true
 vim.opt.swapfile = false
 
--- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+-- Search settings
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
--- Keep signcolumn on by default
-vim.wo.signcolumn = "yes"
+-- Signcolumn & update timing
+vim.opt.signcolumn = "yes"
+vim.opt.updatetime = 250
+vim.opt.timeout = true
+vim.opt.timeoutlen = 300
 
--- Decrease update time
-vim.o.updatetime = 250
-vim.o.timeout = true
-vim.o.timeoutlen = 300
+-- Completion
+vim.opt.completeopt = "menuone,noselect"
+vim.opt.pumborder = "rounded"
+vim.opt.pummaxwidth = 60
 
--- Set completeopt to have a better completion experience
-vim.o.completeopt = "menuone,noselect"
+-- Floating window borders
+vim.opt.winborder = "rounded"
 
--- NOTE: You should make sure your terminal supports this
-vim.o.termguicolors = true
-
-vim.o.scrolloff = 8
+-- Terminal and display
+vim.opt.termguicolors = true
+vim.opt.scrolloff = 8
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
--- vim.opt.expandtab = true
 
--- vim.opt.cursorline = true
 vim.opt.laststatus = 3
-
 vim.opt.background = "dark"
 
 -- Experimental Neovim 0.12+ UI redesign (ui2)
@@ -66,6 +64,7 @@ if vim.version().minor >= 12 then
   end)
 end
 
+-- Folding
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
@@ -82,5 +81,5 @@ vim.opt.diffopt = {
   "inline:word",
 }
 
--- Remove the ugly dashed lines "----" in diff filler areas
+-- Remove the dashed lines "----" in diff filler areas
 vim.opt.fillchars:append({ diff = " " })

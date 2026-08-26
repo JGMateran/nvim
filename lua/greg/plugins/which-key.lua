@@ -15,6 +15,3 @@ require("which-key").add({
   { "<leader>p", group = " Present / Yank" },
   { "<leader>t", group = " Toggle" },
 })
-
-vim.o.timeout = true
-vim.o.timeoutlen = 1000
