@@ -99,21 +99,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.codelens.enable(true, { bufnr = e.buf })
     end
 
-    -- Document highlight on cursor hold
-    if client:supports_method("textDocument/documentHighlight") then
-      local hl_group = vim.api.nvim_create_augroup("LspDocumentHighlight", { clear = false })
-      vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-        buffer = e.buf,
-        group = hl_group,
-        callback = vim.lsp.buf.document_highlight,
-      })
-      vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-        buffer = e.buf,
-        group = hl_group,
-        callback = vim.lsp.buf.clear_references,
-      })
-    end
-
     map("n", "gd", function()
       Snacks.picker.lsp_definitions()
     end, "Go to definition")

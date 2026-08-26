@@ -120,7 +120,6 @@ snacks.setup({
   bigfile = { enabled = true },
   lazygit = { enabled = true },
   gitbrowse = { enabled = true },
-  words = { enabled = true },
   rename = { enabled = true },
   dim = { enabled = true },
   indent = {
@@ -202,14 +201,6 @@ end, { desc = "Snacks: Tags (ctags)" })
 map("n", "<leader>cR", function()
   snacks.rename.rename_file()
 end, { desc = "Rename file (LSP sync)" })
-
--- Symbol / reference navigation
-map({ "n", "t" }, "]]", function()
-  snacks.words.jump(vim.v.count1)
-end, { desc = "Next symbol reference" })
-map({ "n", "t" }, "[[", function()
-  snacks.words.jump(-vim.v.count1)
-end, { desc = "Previous symbol reference" })
 
 -- Utilities and Toggles
 map("n", "<leader>z", function()
