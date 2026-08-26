@@ -116,6 +116,11 @@ snacks.setup({
   terminal = {},
   zen = { enabled = true },
   bigfile = { enabled = true },
+  lazygit = { enabled = true },
+  gitbrowse = { enabled = true },
+  words = { enabled = true },
+  rename = { enabled = true },
+  dim = { enabled = true },
   indent = {
     enable = true,
     indent = {
@@ -176,16 +181,42 @@ end, { desc = "GitHub Issues (abiertos)" })
 map("n", "<leader>ga", function()
   snacks.picker.gh_actions()
 end, { desc = "GitHub PR Actions (actual)" })
+map({ "n", "v" }, "<leader>gB", function()
+  snacks.gitbrowse()
+end, { desc = "Git Browse (Abrir en GitHub)" })
+map("n", "<leader>gz", function()
+  snacks.lazygit()
+end, { desc = "LazyGit (Snacks)" })
 
 -- Tags (ctags)
 map("n", "<leader>ft", function()
   snacks.picker.tags()
 end, { desc = "Snacks: Tags (ctags)" })
 
--- Utilidades
+-- Refactor / Archivos
+map("n", "<leader>cR", function()
+  snacks.rename.rename_file()
+end, { desc = "Renombrar archivo (LSP sync)" })
+
+-- Navegación de símbolos/referencias
+map({ "n", "t" }, "]]", function()
+  snacks.words.jump(vim.v.count1)
+end, { desc = "Siguiente referencia de símbolo" })
+map({ "n", "t" }, "[[", function()
+  snacks.words.jump(-vim.v.count1)
+end, { desc = "Anterior referencia de símbolo" })
+
+-- Utilidades y Toggles
 map("n", "<leader>z", function()
   snacks.zen()
 end, { desc = "Alternar Modo Zen" })
+map("n", "<leader>td", function()
+  if snacks.dim.enabled then
+    snacks.dim.disable()
+  else
+    snacks.dim.enable()
+  end
+end, { desc = "Toggle Dim (Focus)" })
 map("n", "<leader>.", function()
   snacks.scratch()
 end, { desc = "Scratch Buffer (Notas rápidas)" })
