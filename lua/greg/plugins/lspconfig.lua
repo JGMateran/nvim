@@ -91,15 +91,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.inlay_hint.enable(true, { bufnr = e.buf })
     end
 
-    -- Enable CodeLens refresh if supported
+    -- Enable CodeLens if supported (Neovim 0.12+ auto-manages refreshing)
     if client:supports_method("textDocument/codeLens") then
-      vim.lsp.codelens.refresh({ bufnr = e.buf })
-      vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-        buffer = e.buf,
-        callback = function()
-          vim.lsp.codelens.refresh({ bufnr = e.buf })
-        end,
-      })
+      vim.lsp.codelens.enable(true, { bufnr = e.buf })
     end
 
     -- Document highlight on cursor hold
@@ -149,6 +143,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
       local current = vim.lsp.inlay_hint.is_enabled({ bufnr = e.buf })
       vim.lsp.inlay_hint.enable(not current, { bufnr = e.buf })
     end, "Toggle Inlay Hints")
+
+    map("n", "<leader>tc", function()
+      local current = vim.lsp.codelens.is_enabled({ bufnr = e.buf })
+      vim.lsp.codelens.enable(not current, { bufnr = e.buf })
+    end, "Toggle CodeLens")
 
     map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, "Add workspace folder")
     map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, "Remove workspace folder")
