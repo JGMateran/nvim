@@ -63,6 +63,7 @@ local parsers = {
 require("nvim-treesitter").install(parsers)
 
 vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("UserTreesitter", { clear = true }),
   callback = function(args)
     local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
 
@@ -79,6 +80,4 @@ vim.filetype.add({
   extension = {
     mdx = "markdown.mdx",
   },
-  filename = {},
-  pattern = {},
 })

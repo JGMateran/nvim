@@ -22,7 +22,9 @@ mason.setup({
   ui = { border = "rounded", width = 0.8, height = 0.8 },
 })
 
-local servers = {
+local icons = require("greg.config").icons
+
+local lsp_servers = {
   "lua_ls",
   "jsonls",
   "html",
@@ -32,16 +34,19 @@ local servers = {
   "bashls",
   "tailwindcss",
   "biome",
+}
+
+local tools = {
   "stylua",
   "eslint_d",
   "prettierd",
 }
 
 mason_tool_installer.setup({
-  ensure_installed = servers,
+  ensure_installed = vim.list_extend(vim.deepcopy(lsp_servers), tools),
 })
 
-vim.lsp.enable(servers)
+vim.lsp.enable(lsp_servers)
 
 if vim.lsp.document_color then
   vim.lsp.document_color.enable(true, nil, { style = "virtual" })
@@ -60,10 +65,10 @@ vim.diagnostic.config({
   },
   signs = {
     text = {
-      [vim.diagnostic.severity.ERROR] = " ",
-      [vim.diagnostic.severity.WARN] = " ",
-      [vim.diagnostic.severity.INFO] = " ",
-      [vim.diagnostic.severity.HINT] = "󰌵 ",
+      [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+      [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
+      [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
+      [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
     },
   },
 })

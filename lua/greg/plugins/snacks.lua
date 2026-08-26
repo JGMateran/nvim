@@ -5,10 +5,12 @@ vim.pack.add({
 local snacks = require("snacks")
 
 snacks.setup({
-  input = {},
-  select = {},
+  input = { enabled = true },
   notifier = {},
+  quickfile = { enabled = true },
+  scope = { enabled = true },
   picker = {
+    ui_select = true,
     layout = {
       backdrop = false,
     },
@@ -133,6 +135,9 @@ snacks.setup({
   },
   statuscolumn = {},
 })
+
+snacks.input.enable()
+vim.ui.select = snacks.picker.select
 
 -- SNACKS MAPPINGS
 local map = vim.keymap.set

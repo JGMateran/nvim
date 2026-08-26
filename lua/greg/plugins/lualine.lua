@@ -11,6 +11,8 @@ local function lsp_status()
   return ""
 end
 
+local icons = require("greg.config").icons
+
 lualine.setup({
   options = {
     theme = "catppuccin",
@@ -24,7 +26,7 @@ lualine.setup({
     lualine_a = { { "mode", icon = "" } },
     lualine_b = {
       { "branch", icon = "" },
-      { "diff", symbols = { added = "  ", modified = "  ", removed = "  " } },
+      { "diff", symbols = { added = icons.git.added, modified = icons.git.modified, removed = icons.git.removed } },
     },
     lualine_c = {
       {
@@ -40,7 +42,15 @@ lualine.setup({
       },
     },
     lualine_x = {
-      { "diagnostics", symbols = { error = "", warn = "", info = "", hint = "󰌵  " } },
+      {
+        "diagnostics",
+        symbols = {
+          error = icons.diagnostics.Error,
+          warn = icons.diagnostics.Warn,
+          info = icons.diagnostics.Info,
+          hint = icons.diagnostics.Hint,
+        },
+      },
       { lsp_status, icon = "", show_name = true },
     },
     lualine_y = {
