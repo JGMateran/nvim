@@ -134,30 +134,30 @@ snacks.setup({
   statuscolumn = {},
 })
 
--- MAPPINGS DE SNACKS
+-- SNACKS MAPPINGS
 local map = vim.keymap.set
 
--- Explorador
+-- Explorer
 map("n", "<leader><tab>", function()
   snacks.explorer()
 end, { desc = "Toggle Snacks Explorer" })
 
--- Buscadores (Picker)
+-- Finders (Picker)
 map("n", "<leader>ff", function()
   snacks.picker.files()
-end, { desc = "Snacks: Buscar Archivos" })
+end, { desc = "Snacks: Find files" })
 map("n", "<leader>fb", function()
   snacks.picker.buffers()
-end, { desc = "Snacks: Buscar Buffers" })
+end, { desc = "Snacks: Find buffers" })
 map("n", "<leader>fg", function()
   snacks.picker.grep()
-end, { desc = "Snacks: Grep Global" })
+end, { desc = "Snacks: Global grep" })
 map("n", "<leader>fh", function()
   snacks.picker.help()
-end, { desc = "Snacks: Ayuda" })
+end, { desc = "Snacks: Help tags" })
 map("n", "<leader>fr", function()
   snacks.picker.recent()
-end, { desc = "Snacks: Recientes" })
+end, { desc = "Snacks: Recent files" })
 
 -- Git
 map("n", "<leader>ge", function()
@@ -171,19 +171,19 @@ map("n", "<leader>gd", function()
 end, { desc = "Git Diff (Snacks)" })
 map("n", "<leader>gp", function()
   snacks.picker.gh_pr()
-end, { desc = "GitHub PRs (abiertos)" })
+end, { desc = "GitHub PRs (open)" })
 map("n", "<leader>gP", function()
   snacks.picker.gh_pr({ state = "all" })
-end, { desc = "GitHub PRs (todos)" })
+end, { desc = "GitHub PRs (all)" })
 map("n", "<leader>gi", function()
   snacks.picker.gh_issue()
-end, { desc = "GitHub Issues (abiertos)" })
+end, { desc = "GitHub Issues (open)" })
 map("n", "<leader>ga", function()
   snacks.picker.gh_actions()
-end, { desc = "GitHub PR Actions (actual)" })
+end, { desc = "GitHub PR Actions (current)" })
 map({ "n", "v" }, "<leader>gB", function()
   snacks.gitbrowse()
-end, { desc = "Git Browse (Abrir en GitHub)" })
+end, { desc = "Git Browse (Open in GitHub)" })
 map("n", "<leader>gz", function()
   snacks.lazygit()
 end, { desc = "LazyGit (Snacks)" })
@@ -193,23 +193,23 @@ map("n", "<leader>ft", function()
   snacks.picker.tags()
 end, { desc = "Snacks: Tags (ctags)" })
 
--- Refactor / Archivos
+-- Refactor / Files
 map("n", "<leader>cR", function()
   snacks.rename.rename_file()
-end, { desc = "Renombrar archivo (LSP sync)" })
+end, { desc = "Rename file (LSP sync)" })
 
--- Navegación de símbolos/referencias
+-- Symbol / reference navigation
 map({ "n", "t" }, "]]", function()
   snacks.words.jump(vim.v.count1)
-end, { desc = "Siguiente referencia de símbolo" })
+end, { desc = "Next symbol reference" })
 map({ "n", "t" }, "[[", function()
   snacks.words.jump(-vim.v.count1)
-end, { desc = "Anterior referencia de símbolo" })
+end, { desc = "Previous symbol reference" })
 
--- Utilidades y Toggles
+-- Utilities and Toggles
 map("n", "<leader>z", function()
   snacks.zen()
-end, { desc = "Alternar Modo Zen" })
+end, { desc = "Toggle Zen Mode" })
 map("n", "<leader>td", function()
   if snacks.dim.enabled then
     snacks.dim.disable()
@@ -219,13 +219,13 @@ map("n", "<leader>td", function()
 end, { desc = "Toggle Dim (Focus)" })
 map("n", "<leader>.", function()
   snacks.scratch()
-end, { desc = "Scratch Buffer (Notas rápidas)" })
+end, { desc = "Scratch Buffer (Quick notes)" })
 map("n", "<leader>un", function()
   snacks.notifier.hide()
-end, { desc = "Limpiar Notificaciones" })
+end, { desc = "Dismiss notifications" })
 map("n", "<leader>bd", function()
   snacks.bufdelete()
-end, { desc = "Borrar buffer" })
+end, { desc = "Delete buffer" })
 map("n", "<leader>bD", function()
   snacks.bufdelete.invisible()
-end, { desc = "Borrar buffer (invisible)" })
+end, { desc = "Delete buffer (invisible)" })

@@ -30,7 +30,7 @@ local function do_lint()
   local linters = lint.linters_by_ft[ft] or {}
   local names = {}
 
-  -- Solo añadimos los linters que tengan archivo de configuración en el proyecto
+  -- Only add linters that have a configuration file in the project
   for _, name in ipairs(linters) do
     local config_files = lint_conditions[name]
     if config_files then

@@ -46,7 +46,7 @@ telescope.setup({
   },
   pickers = {
     find_files = {
-      -- Usamos la variable detectada para el comando
+      -- Use the detected variable for the command
       find_command = { fd_command, "--type", "f", "--strip-cwd-prefix", "--hidden", "--exclude", ".git" },
     },
   },

@@ -41,7 +41,7 @@ require("gitsigns").setup({
     end, { desc = "Reset selected lines" })
 
     map("n", "<leader>hS", gs.stage_buffer, { desc = "Stage entire buffer" })
-    map("n", "<leader>hu", gs.stage_hunk, { desc = "Undo last hunk staging (Toggle)" })
+    map("n", "<leader>hu", gs.stage_hunk, { desc = "Undo last hunk staging" })
     map("n", "<leader>hR", gs.reset_buffer, { desc = "Reset entire buffer" })
     map("n", "<leader>hp", gs.preview_hunk, { desc = "Preview current hunk" })
     map("n", "<leader>hb", function()
@@ -56,7 +56,7 @@ require("gitsigns").setup({
       ---@diagnostic disable-next-line: param-type-mismatch
       gs.diffthis("~")
     end, { desc = "Diff preview current line with previous version" })
-    map("n", "<leader>td", gs.preview_hunk_inline, { desc = "Preview deleted/added lines inline" })
+    map("n", "<leader>hi", gs.preview_hunk_inline, { desc = "Preview deleted/added lines inline" })
 
     map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select current hunk in insert or visual mode" })
   end,
