@@ -46,6 +46,16 @@ mason_tool_installer.setup({
   ensure_installed = vim.list_extend(vim.deepcopy(lsp_servers), tools),
 })
 
+vim.lsp.config("lua_ls", {
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim", "Snacks" },
+      },
+    },
+  },
+})
+
 vim.lsp.enable(lsp_servers)
 
 if vim.lsp.document_color then
