@@ -51,6 +51,7 @@ require("gitsigns").setup({
       gs.blame({ full = true })
     end, { desc = "Blame entire file" })
     map("n", "<leader>tb", gs.toggle_current_line_blame, { desc = "Toggle blame for current line" })
+    map("n", "<leader>tw", gs.toggle_word_diff, { desc = "Toggle word diff inline" })
     map("n", "<leader>hd", gs.diffthis, { desc = "Diff preview current line" })
     map("n", "<leader>hD", function()
       ---@diagnostic disable-next-line: param-type-mismatch
@@ -58,6 +59,8 @@ require("gitsigns").setup({
     end, { desc = "Diff preview current line with previous version" })
     map("n", "<leader>hi", gs.preview_hunk_inline, { desc = "Preview deleted/added lines inline" })
 
-    map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select current hunk in insert or visual mode" })
+    -- Text objects (ih = inner hunk, ah = outer hunk)
+    map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Inner hunk" })
+    map({ "o", "x" }, "ah", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Outer hunk" })
   end,
 })
