@@ -40,6 +40,7 @@ local tools = {
   "stylua",
   "oxlint",
   "oxfmt",
+  "prettierd",
 }
 
 mason_tool_installer.setup({
