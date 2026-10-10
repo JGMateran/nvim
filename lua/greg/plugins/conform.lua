@@ -7,14 +7,19 @@ local conform = require("conform")
 conform.setup({
   formatters = {
     biome = { require_cwd = true },
+    oxfmt = {
+      command = "oxfmt",
+      args = { "--stdin-filepath", "$FILENAME" },
+      stdin = true,
+    },
   },
   formatters_by_ft = {
     lua = { "stylua" },
-    javascript = { "biome", "prettierd", stop_after_first = true },
-    typescript = { "biome", "prettierd", stop_after_first = true },
-    javascriptreact = { "biome", "prettierd", stop_after_first = true },
-    typescriptreact = { "biome", "prettierd", stop_after_first = true },
-    json = { "biome", "prettierd", stop_after_first = true },
+    javascript = { "oxfmt", "biome", stop_after_first = true },
+    typescript = { "oxfmt", "biome", stop_after_first = true },
+    javascriptreact = { "oxfmt", "biome", stop_after_first = true },
+    typescriptreact = { "oxfmt", "biome", stop_after_first = true },
+    json = { "oxfmt", "biome", stop_after_first = true },
   },
   format_on_save = {
     timeout_ms = 500,

@@ -38,7 +38,8 @@ local lsp_servers = {
 
 local tools = {
   "stylua",
-  "prettierd",
+  "oxlint",
+  "oxfmt",
 }
 
 mason_tool_installer.setup({
