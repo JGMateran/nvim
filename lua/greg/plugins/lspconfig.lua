@@ -38,7 +38,6 @@ local lsp_servers = {
 
 local tools = {
   "stylua",
-  "eslint_d",
   "prettierd",
 }
 
@@ -95,8 +94,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.keymap.set(mode, l, r, { buffer = e.buf, desc = "LSP: " .. desc })
     end
 
-    if client.server_capabilities.inlineCompletionProvider then
-      vim.lsp.completion.enable(true, client.id, e.buf, { autostart = true })
+    -- Enable native Inline Completion if supported (Neovim 0.12+)
+    if client:supports_method("textDocument/inlineCompletion") and vim.lsp.inline_completion then
+      vim.lsp.inline_completion.enable(true, { bufnr = e.buf })
     end
 
     -- Enable Inlay Hints if supported
@@ -123,6 +123,21 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end, "Go to type definition")
 
     map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
+
+    -- Neovim 0.11+: gO opens the document symbols picker
+    map("n", "gO", function()
+      Snacks.picker.lsp_symbols()
+    end, "LSP Document Symbols")
+
+    -- Neovim 0.12+: incremental LSP selection range
+    if client:supports_method("textDocument/selectionRange") then
+      map({ "n", "v" }, "<leader>]", function()
+        vim.lsp.buf.selection_range(1)
+      end, "Expand selection")
+      map({ "n", "v" }, "<leader>[", function()
+        vim.lsp.buf.selection_range(-1)
+      end, "Shrink selection")
+    end
 
     map("n", "K", function()
       vim.lsp.buf.hover({ border = "rounded", max_width = 80, max_height = 30 })

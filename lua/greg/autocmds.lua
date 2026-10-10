@@ -16,8 +16,9 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
   end,
 })
 
---[[
+-- LSP progress notifications with spinner (Neovim 0.10+)
 vim.api.nvim_create_autocmd("LspProgress", {
+  group = vim.api.nvim_create_augroup("LspProgress", { clear = true }),
   callback = function()
     local spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
     vim.notify(vim.lsp.status(), vim.log.levels.INFO, {
@@ -29,7 +30,18 @@ vim.api.nvim_create_autocmd("LspProgress", {
     })
   end,
 })
-]]
+
+-- Neovim 0.12+: native terminal progress bars via OSC 9;4
+vim.api.nvim_create_autocmd("Progress", {
+  group = vim.api.nvim_create_augroup("TerminalProgress", { clear = true }),
+  callback = function(ev)
+    local p = ev.data
+    if p then
+      io.write(string.format("\27]9;4;%d;%d\7", p.state or 1, p.value or 0))
+      io.flush()
+    end
+  end,
+})
 
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("GitSettings", { clear = true }),
@@ -59,5 +71,17 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function(event)
     vim.bo[event.buf].buflisted = false
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true, desc = "Close window" })
+  end,
+})
+
+-- Neovim 0.12+: gx in help buffers opens the online documentation
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("HelpGotoOnline", { clear = true }),
+  pattern = "help",
+  callback = function(event)
+    vim.keymap.set("n", "gx", function()
+      local word = vim.fn.expand("<cWORD>")
+      vim.ui.open("https://neovim.io/doc/user/" .. word .. ".html")
+    end, { buffer = event.buf, desc = "Open help online" })
   end,
 })

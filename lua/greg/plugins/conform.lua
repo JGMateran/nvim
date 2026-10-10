@@ -5,6 +5,9 @@ vim.pack.add({
 local conform = require("conform")
 
 conform.setup({
+  formatters = {
+    biome = { require_cwd = true },
+  },
   formatters_by_ft = {
     lua = { "stylua" },
     javascript = { "biome", "prettierd", stop_after_first = true },

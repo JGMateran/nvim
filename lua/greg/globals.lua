@@ -55,6 +55,11 @@ vim.opt.shiftwidth = 2
 vim.opt.laststatus = 3
 vim.opt.background = "dark"
 
+-- Neovim 0.9+: splitkeep controls cursor visibility when switching splits
+vim.opt.splitkeep = "cursor"
+-- Neovim 0.9+: showcmdloc moves showcmd to statusline (cleaner bottom)
+vim.opt.showcmdloc = "statusline"
+
 -- Experimental Neovim 0.12+ UI redesign (ui2)
 -- Provides a cleaner command line and message experience.
 -- It avoids "Press ENTER" and improves the message pager.
@@ -70,6 +75,12 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 vim.opt.foldtext = ""
 
+-- Neovim 0.11+: messagesopt configures :messages and the hit-enter prompt
+vim.opt.messagesopt = "hit-enter,history:500,progress:c"
+
+-- Neovim 0.10+: forces gx to go through vim.ui.open globally
+vim.g.netrw_browsex_view = "-"
+
 -- Modern Diff UI Settings (Neovim 0.10+ / 0.12+)
 vim.opt.diffopt = {
   "internal",
@@ -78,8 +89,14 @@ vim.opt.diffopt = {
   "hiddenoff",
   "algorithm:histogram",
   "linematch:60",
-  "inline:word",
+  "indent-heuristic",
+  "inline:char",
 }
 
 -- Remove the dashed lines "----" in diff filler areas
 vim.opt.fillchars:append({ diff = " " })
+
+-- Neovim 0.12+: new highlight groups for the completion popup
+vim.api.nvim_set_hl(0, "PmenuBorder", { link = "FloatBorder" })
+vim.api.nvim_set_hl(0, "PmenuShadow", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "PmenuShadowThrough", { link = "PmenuShadow" })

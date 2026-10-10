@@ -5,22 +5,21 @@ vim.pack.add({
 local lint = require("lint")
 
 local lint_conditions = {
-  eslint_d = {
-    ".eslintrc.js",
-    ".eslintrc.cjs",
-    ".eslintrc.yaml",
-    ".eslintrc.yml",
-    ".eslintrc.json",
-    "eslint.config.js",
+  oxlint = {
+    ".oxlintrc.json",
+    ".oxlintrc.jsonc",
+    ".oxlintrc.yaml",
+    ".oxlintrc.yml",
+    "oxlint.json",
   },
   biomejs = { "biome.json", "biome.jsonc" },
 }
 
 lint.linters_by_ft = {
-  javascript = { "eslint_d", "biomejs" },
-  typescript = { "eslint_d", "biomejs" },
-  javascriptreact = { "eslint_d", "biomejs" },
-  typescriptreact = { "eslint_d", "biomejs" },
+  javascript = { "oxlint", "biomejs" },
+  typescript = { "oxlint", "biomejs" },
+  javascriptreact = { "oxlint", "biomejs" },
+  typescriptreact = { "oxlint", "biomejs" },
 }
 
 local timer = vim.uv.new_timer()

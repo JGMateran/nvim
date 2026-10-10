@@ -41,3 +41,20 @@ end, { desc = "Open native undo interface" })
 
 -- Neovim 0.12+ Restart
 vim.keymap.set("n", "<leader>qr", "<cmd>restart<cr>", { desc = "Restart Neovim in place" })
+
+-- Neovim 0.11+: gx routes through vim.ui.open (system handler)
+vim.keymap.set({ "n", "v" }, "gx", function()
+  vim.ui.open(vim.fn.expand("<cfile>"))
+end, { desc = "Open file/URL with system handler" })
+
+-- Neovim 0.11+: close current floating window
+vim.keymap.set("n", "<leader>fd", "<cmd>fclose<cr>", { desc = "Close floating window" })
+
+-- Neovim 0.12+: paste with auto-indent (:iput)
+vim.keymap.set("n", "<leader>ip", "<cmd>iput<cr>", { desc = "Paste with auto-indent (:iput)" })
+
+-- Neovim 0.12+: deduplicate lines in visual selection (:uniq)
+vim.keymap.set("v", "<leader>uq", ":uniq<CR>", { desc = "Deduplicate selected lines (:uniq)" })
+
+-- Neovim 0.11+: detach UI leaving server running in background
+vim.keymap.set("n", "<leader>qd", "<cmd>detach<cr>", { desc = "Detach UI session" })
