@@ -14,4 +14,5 @@ require("which-key").add({
   { "<leader>u", group = " Undo / UI" },
   { "<leader>p", group = " Present / Yank" },
   { "<leader>t", group = " Toggle" },
+  { "<leader>w", group = " Window" },
 })

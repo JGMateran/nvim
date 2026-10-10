@@ -151,17 +151,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<leader>cr", vim.lsp.buf.rename, "Rename symbol")
     map("n", "<leader>cl", vim.lsp.codelens.run, "Run CodeLens")
 
-    -- Toggles
-    map("n", "<leader>th", function()
-      local current = vim.lsp.inlay_hint.is_enabled({ bufnr = e.buf })
-      vim.lsp.inlay_hint.enable(not current, { bufnr = e.buf })
-    end, "Toggle Inlay Hints")
-
-    map("n", "<leader>tc", function()
-      local current = vim.lsp.codelens.is_enabled({ bufnr = e.buf })
-      vim.lsp.codelens.enable(not current, { bufnr = e.buf })
-    end, "Toggle CodeLens")
-
     map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, "Add workspace folder")
     map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, "Remove workspace folder")
 
