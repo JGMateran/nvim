@@ -2,7 +2,20 @@ vim.pack.add({
   "https://github.com/folke/which-key.nvim",
 })
 
-require("which-key").setup({})
+require("which-key").setup({
+  preset = "modern",
+  win = {
+    border = "rounded",
+  },
+  plugins = {
+    marks = true,
+    registers = true,
+    spelling = {
+      enabled = true,
+      suggestions = 20,
+    },
+  },
+})
 
 require("which-key").add({
   { "<leader>f", group = " Find" },

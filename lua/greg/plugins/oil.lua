@@ -7,6 +7,17 @@ require("oil").setup({
   columns = {
     "icon",
   },
+  keymaps = {
+    ["<C-p>"] = "actions.preview",
+    ["<C-v>"] = { "actions.select", opts = { vertical = true }, desc = "Open in vertical split" },
+    ["<C-s>"] = { "actions.select", opts = { horizontal = true }, desc = "Open in horizontal split" },
+    ["<C-t>"] = { "actions.select", opts = { tab = true }, desc = "Open in new tab" },
+    ["<C-c>"] = { "actions.close", mode = "n" },
+    ["<C-l>"] = "actions.refresh",
+    ["-"] = { "actions.parent", mode = "n" },
+    ["_"] = { "actions.open_cwd", mode = "n" },
+    ["g."] = { "actions.toggle_hidden", mode = "n" },
+  },
   buf_options = {
     buflisted = false,
     bufhidden = "hide",
@@ -24,18 +35,18 @@ require("oil").setup({
   delete_to_trash = true,
   skip_confirm_for_simple_edits = true,
   view_options = {
-    show_hidden = true,
-    is_hidden_file = function()
-      return false
+    show_hidden = false,
+    is_hidden_file = function(name)
+      return vim.startswith(name, ".") or name == "node_modules"
     end,
-    is_always_hidden_file = function()
-      return false
+    is_always_hidden_file = function(name)
+      return name == ".."
     end,
   },
   float = {
-    padding = 1,
-    max_width = 0.7,
-    max_height = 0,
+    padding = 2,
+    max_width = 0.8,
+    max_height = 0.8,
     border = "rounded",
     win_options = {
       winblend = 0,
